@@ -1,0 +1,15 @@
+;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("december.org"
+ (filename . "~/projects/job-employee-nyxt/december.org")
+ (front-context-string . "* Clock-time Dec")
+ (rear-context-string)
+ (position . 1))
+("november.org"
+ (filename . "~/projects/job-employee-nyxt/november.org")
+ (front-context-string . "* Clock-time Nov")
+ (rear-context-string)
+ (position . 1))
+)

@@ -2,7 +2,22 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("december.org"
+(("configuration.nix"
+ (filename . "/etc/nixos/configuration.nix")
+ (front-context-string . "# Edit this conf")
+ (rear-context-string)
+ (position . 1))
+("hosts.nix"
+ (filename . "/etc/nixos/hosts.nix")
+ (front-context-string . "\n127.0.0.1 gp.re")
+ (rear-context-string . "teway.reddit.com")
+ (position . 5019685))
+("init.el"
+ (filename . "~/.dotfiles/.emacs.d/init.el")
+ (front-context-string . ";; Clean-up the ")
+ (rear-context-string)
+ (position . 1))
+("december.org"
  (filename . "~/projects/job-employee-nyxt/december.org")
  (front-context-string . "* Clock-time Dec")
  (rear-context-string)

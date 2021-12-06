@@ -80,10 +80,46 @@
 ;;   :config
 ;;   (ivy-mode 1))
 
+;; Change mode-line to be more modern, like SpaceMacs
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
+
+;; Requisite to have cool icons on the doom-mode line
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+;; Display column numbers
+(column-number-mode)
+
+;; Display line numbers
+;; This is better than old linum-mode
+(global-display-line-numbers-mode t)
+
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+		shell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; Make it easier to edit Lisp code
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+;; A package showing all possibilities of keys
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1))
+
+;; Install Helm
+(use-package helm :straight t)
+
+
+
+
 
 
 
@@ -100,7 +136,9 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(global-command-log-mode t)
- '(package-selected-packages '(doom-modeline ivy command-log-mode slime use-package))
+ '(ivy-mode t)
+ '(package-selected-packages
+   '(helm which-key rainbow-delimiters doom-modeline ivy command-log-mode slime use-package))
  '(tooltip-mode nil))
 
 (custom-set-faces

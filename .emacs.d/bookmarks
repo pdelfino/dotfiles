@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("configuration.nix"
+(("ideias-list.org"
+ (filename . "~/projects/ideias/ideias-list.org")
+ (front-context-string . "* Ideias em gera")
+ (rear-context-string)
+ (position . 1))
+("configuration.nix"
  (filename . "/etc/nixos/configuration.nix")
  (front-context-string . "# Edit this conf")
  (rear-context-string)

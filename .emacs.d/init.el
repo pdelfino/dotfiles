@@ -27,11 +27,11 @@
 ;;(set-face-attribute 'default nil :font "Fira Code Retina" :height 200)
 
 ;; Load theme used by System Crafters
-;;(load-theme 'wombat)
+(load-theme 'wombat)
 
 ;; Adding dracula theme to emacs
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'dracula t)
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (load-theme 'dracula t)
 
 ;; This brings to the environment all the package manager functions
 (require 'package)
@@ -93,6 +93,9 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
+;; (use-package doom-themes
+;;   :init (load-theme 'doom-gruvbox))
+
 ;; Requisite to have cool icons on the doom-mode line
 (use-package all-the-icons
   :if (display-graphic-p))
@@ -110,16 +113,64 @@
 		shell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-;; Make it easier to edit Lisp code
+;; Highlights parens, brackets, and braces according to their depth
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; A package showing all possibilities of keys
+;; Configure Rainbow Delimiters
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
+
+;; A package that displays available keybindings in popup 
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1))
+
+;; Showing me the details of all the commands
+;; M=x is way more powerful now
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
+;; Using counsel
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+         ("C-x b" . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history)))
+
+;; Making helpful more powerful
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ;; Helm for the win
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
@@ -169,20 +220,25 @@
 (setq slime-lisp-implementations
       '((sbcl ("/home/pedro/projects/nyxt.sh" ""))))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(global-command-log-mode t)
- '(package-selected-packages
-   '(dracula-theme  which-key rainbow-delimiters doom-modeline command-log-mode slime use-package))
- '(tooltip-mode nil))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+;; System Crafters does not use =custom-set-variables= or =custom-set-faces=
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(column-number-mode t)
+;;  '(custom-safe-themes
+;;    '("7eea50883f10e5c6ad6f81e153c640b3a288cd8dc1d26e4696f7d40f754cc703" default))
+;;  '(global-command-log-mode t)
+;;  '(package-selected-packages
+;;    '(helpful counsel all-the-icons-ivy-rich ivy-rich dracula-theme which-key rainbow-delimiters doom-modeline command-log-mode slime use-package))
+;;  '(tooltip-mode nil))
+
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )

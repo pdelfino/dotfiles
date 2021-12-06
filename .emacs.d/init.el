@@ -164,6 +164,11 @@
 (general-define-key
   "C-M-j" 'counsel-switch-buffer)
 
+;; Magit configuration
+(use-package magit
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
 ;; Helm for the win
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
@@ -237,7 +242,7 @@
  '(custom-safe-themes
    '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default))
  '(package-selected-packages
-   '(paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich)))
+   '(magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

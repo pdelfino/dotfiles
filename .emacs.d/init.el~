@@ -26,12 +26,8 @@
 ;; Fontsize
 ;;(set-face-attribute 'default nil :font "Fira Code Retina" :height 200)
 
-;; Load theme used by System Crafters
-(load-theme 'wombat)
-
-;; Adding dracula theme to emacs
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;; (load-theme 'dracula t)
+;; Default theme initially used by System Crafters
+;; (load-theme 'wombat)
 
 ;; This brings to the environment all the package manager functions
 (require 'package)
@@ -73,7 +69,7 @@
   :diminish ;keeps ivy out of the mode line
   :bind (;("C-s" . swiper)
          :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)	
+         ;("TAB" . ivy-alt-done)	
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
@@ -93,8 +89,13 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-;; (use-package doom-themes
-;;   :init (load-theme 'doom-gruvbox))
+;; Use the same theme as System Crafters
+;; This brings themes available in Doom Emacs
+(use-package doom-themes
+   :init (load-theme 'doom-palenight t))
+
+;; There will be no question about confirming load theme
+(setq sml/no-confirm-load-theme t)
 
 ;; Requisite to have cool icons on the doom-mode line
 (use-package all-the-icons
@@ -113,23 +114,32 @@
 		shell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-;; Make it easier to edit Lisp code
+;; Highlights parens, brackets, and braces according to their depth
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; A package showing all possibilities of keys
+;; Configure Rainbow Delimiters
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
+
+;; A package that displays available keybindings in popup 
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1))
 
-;; Problem: for some reason I can't use ivy-rich
+;; Showing me the details of all the commands
+;; M=x is way more powerful now
 (use-package ivy-rich
   :init
   (ivy-rich-mode 1))
 
-;; Using counsel
+;; Counsel is already installed
+;; But, I can use use-package to customize it
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)
@@ -137,7 +147,7 @@
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
 
-;; Making helpful more powerful
+;; Augmentation of Emacs help system
 (use-package helpful
   :custom
   (counsel-describe-function-function #'helpful-callable)
@@ -148,32 +158,23 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
+;;  More convenient key definitions in emacs 
+(use-package general)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(general-define-key
+  "C-M-j" 'counsel-switch-buffer)
 
 ;; Helm for the win
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
 
 ;; Keybindings
-;; Jump to bookmarks
+;;;; Jump to bookmarks
 (global-set-key (kbd "C-x C-M-b") 'bookmark-jump)
-;; Refresh the current buffer
+;;;; Refresh the current buffer
 (global-set-key (kbd "C-x C-M-r") 'revert-buffer)
-
+;;;; Keybinding change Dabrev Expansion
+(global-set-key (kbd "M-]") 'dabbrev-expand)
 
 ;; Make paste-and-replace work
 (delete-selection-mode 1)
@@ -203,28 +204,40 @@
 ;; (global-disable-mouse-mode)
 (mouse-wheel-mode 0)
 
-
-
-
-
 (slime-setup '(slime-fancy slime-asdf slime-indentation slime-sbcl-exts slime-scratch))
 
 (setq slime-lisp-implementations
       '((sbcl ("/home/pedro/projects/nyxt.sh" ""))))
 
+;; System Crafters does not use =custom-set-variables= or =custom-set-faces=
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(column-number-mode t)
+;;  '(custom-safe-themes
+;;    '("7eea50883f10e5c6ad6f81e153c640b3a288cd8dc1d26e4696f7d40f754cc703" default))
+;;  '(global-command-log-mode t)
+;;  '(package-selected-packages
+;;    '(helpful counsel all-the-icons-ivy-rich ivy-rich dracula-theme which-key rainbow-delimiters doom-modeline command-log-mode slime use-package))
+;;  '(tooltip-mode nil))
+
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-number-mode t)
  '(custom-safe-themes
-   '("7eea50883f10e5c6ad6f81e153c640b3a288cd8dc1d26e4696f7d40f754cc703" default))
- '(global-command-log-mode t)
+   '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default))
  '(package-selected-packages
-   '(counsel all-the-icons-ivy-rich ivy-rich dracula-theme which-key rainbow-delimiters doom-modeline command-log-mode slime use-package))
- '(tooltip-mode nil))
-
+   '(general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

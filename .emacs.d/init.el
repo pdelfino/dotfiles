@@ -26,12 +26,8 @@
 ;; Fontsize
 ;;(set-face-attribute 'default nil :font "Fira Code Retina" :height 200)
 
-;; Load theme used by System Crafters
-(load-theme 'wombat)
-
-;; Adding dracula theme to emacs
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;; (load-theme 'dracula t)
+;; Default theme initially used by System Crafters
+;; (load-theme 'wombat)
 
 ;; This brings to the environment all the package manager functions
 (require 'package)
@@ -93,8 +89,13 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
+;; Use the same theme as System Crafters
+;; This brings themes available in Doom Emacs
 (use-package doom-themes
-   :init (load-theme 'doom-palenight))
+   :init (load-theme 'doom-palenight t))
+
+;; There will be no question about confirming load theme
+(setq sml/no-confirm-load-theme t)
 
 ;; Requisite to have cool icons on the doom-mode line
 (use-package all-the-icons
@@ -157,31 +158,23 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
+;;  More convenient key definitions in emacs 
+(use-package general)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(general-define-key
+  "C-M-j" 'counsel-switch-buffer)
 
 ;; Helm for the win
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
 
 ;; Keybindings
-;; Jump to bookmarks
+;;;; Jump to bookmarks
 (global-set-key (kbd "C-x C-M-b") 'bookmark-jump)
-;; Refresh the current buffer
+;;;; Refresh the current buffer
 (global-set-key (kbd "C-x C-M-r") 'revert-buffer)
+;;;; Keybinding change Dabrev Expansion
+(global-set-key (kbd "M-]") 'dabbrev-expand)
 
 ;; Make paste-and-replace work
 (delete-selection-mode 1)
@@ -211,16 +204,10 @@
 ;; (global-disable-mouse-mode)
 (mouse-wheel-mode 0)
 
-
-
-
-
 (slime-setup '(slime-fancy slime-asdf slime-indentation slime-sbcl-exts slime-scratch))
 
 (setq slime-lisp-implementations
       '((sbcl ("/home/pedro/projects/nyxt.sh" ""))))
-
-
 
 ;; System Crafters does not use =custom-set-variables= or =custom-set-faces=
 ;; (custom-set-variables
@@ -248,7 +235,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default)))
+   '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default))
+ '(package-selected-packages
+   '(paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

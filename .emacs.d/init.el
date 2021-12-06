@@ -73,7 +73,7 @@
   :diminish ;keeps ivy out of the mode line
   :bind (;("C-s" . swiper)
          :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)	
+         ;("TAB" . ivy-alt-done)	
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
@@ -93,8 +93,8 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-;; (use-package doom-themes
-;;   :init (load-theme 'doom-gruvbox))
+(use-package doom-themes
+   :init (load-theme 'doom-palenight))
 
 ;; Requisite to have cool icons on the doom-mode line
 (use-package all-the-icons
@@ -137,7 +137,8 @@
   :init
   (ivy-rich-mode 1))
 
-;; Using counsel
+;; Counsel is already installed
+;; But, I can use use-package to customize it
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)
@@ -145,7 +146,7 @@
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
 
-;; Making helpful more powerful
+;; Augmentation of Emacs help system
 (use-package helpful
   :custom
   (counsel-describe-function-function #'helpful-callable)
@@ -181,7 +182,6 @@
 (global-set-key (kbd "C-x C-M-b") 'bookmark-jump)
 ;; Refresh the current buffer
 (global-set-key (kbd "C-x C-M-r") 'revert-buffer)
-
 
 ;; Make paste-and-replace work
 (delete-selection-mode 1)
@@ -242,3 +242,16 @@
 ;;  ;; Your init file should contain only one such instance.
 ;;  ;; If there is more than one, they won't work right.
 ;;  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

@@ -95,7 +95,7 @@
    :init (load-theme 'doom-palenight t))
 
 ;; There will be no question about confirming load theme
-(setq sml/no-confirm-load-theme t)
+;; (setq sml/no-confirm-load-theme t)
 
 ;; Requisite to have cool icons on the doom-mode line
 (use-package all-the-icons
@@ -172,6 +172,26 @@
 ;; Helm for the win
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
+
+;; Paredit Hooks 
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode) ;isso é para CL
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode) ;ativado via M-x
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+(add-hook 'slime-repl-mode-hook 'enable-paredit-mode) ;ativar o paredit no slime    
+
+;; Paredit Keybinding configuration
+(eval-after-load 'paredit
+  '(progn
+     (define-key paredit-mode-map (kbd "C->") 'paredit-forward-slurp-sexp)
+     (define-key paredit-mode-map (kbd "C-<") 'paredit-forward-barf-sexp)
+     (define-key paredit-mode-map (kbd "C-M-<") 'paredit-backward-slurp-sexp)
+     (define-key paredit-mode-map (kbd "C-M->") 'paredit-backward-barf-sexp)
+     (define-key paredit-mode-map (kbd "<C-right>") nil)
+     (define-key paredit-mode-map (kbd "<C-left>") nil)))
 
 ;; Keybindings
 ;;;; Jump to bookmarks

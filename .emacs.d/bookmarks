@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("ideias-list.org"
+(("nyxt-init"
+ (filename . "~/.config/nyxt/init.lisp")
+ (front-context-string . "\"C-space\" 'nothi")
+ (rear-context-string . "                ")
+ (position . 216))
+("ideias-list.org"
  (filename . "~/projects/ideias/ideias-list.org")
  (front-context-string . "* Ideias em gera")
  (rear-context-string)

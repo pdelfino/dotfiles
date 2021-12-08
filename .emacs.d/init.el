@@ -173,6 +173,14 @@
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
 
+;; Snippet of text before starting Nyxt
+(defun my-nyxt-quickload-snippet ()
+  "Insert snippet to load Nyxt."
+  (interactive)
+  (insert "(ql:quickload :nyxt/gi-gtk)")
+  (backward-word 2))
+(global-set-key (kbd "C-x C-M-n") 'my-nyxt-quickload-snippet)
+
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
@@ -262,7 +270,32 @@
  '(custom-safe-themes
    '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default))
  '(package-selected-packages
-   '(transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich)))
+   '(transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
+ '(safe-local-variable-values
+   '((eval cl-flet
+           ((enhance-imenu-lisp
+             (&rest keywords)
+             (dolist
+                 (keyword keywords)
+               (add-to-list 'lisp-imenu-generic-expression
+                            (list
+                             (purecopy
+                              (concat
+                               (capitalize keyword)
+                               (if
+                                   (string=
+                                    (substring-no-properties keyword -1)
+                                    "s")
+                                   "es" "s")))
+                             (purecopy
+                              (concat "^\\s-*("
+                                      (regexp-opt
+                                       (list
+                                        (concat "define-" keyword))
+                                       t)
+                                      "\\s-+\\(" lisp-mode-symbol-regexp "\\)"))
+                             2)))))
+           (enhance-imenu-lisp "bookmarklet-command" "class" "command" "ffi-method" "function" "mode" "parenscript" "user-class")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -224,6 +224,9 @@
 ;; Launch emacs as full screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+;; Emacs minor mode to wrap region with tag or punctuations 
+(wrap-region-mode t)
+
 ;; Enabling IDO
 ;; (setq ido-enable-flex-matching t)
 ;; (setq ido-everywhere t)
@@ -270,7 +273,7 @@
  '(custom-safe-themes
    '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default))
  '(package-selected-packages
-   '(transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
+   '(wrap-region transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
  '(safe-local-variable-values
    '((eval cl-flet
            ((enhance-imenu-lisp

@@ -162,7 +162,7 @@
 (use-package general)
 
 (general-define-key
-  "C-M-j" 'counsel-switch-buffer)
+  "C-x C-b" 'counsel-switch-buffer)
 
 ;; Magit configuration
 (use-package magit
@@ -226,6 +226,9 @@
 
 ;; Emacs minor mode to wrap region with tag or punctuations 
 (wrap-region-mode t)
+
+;; Increase the font size
+(set-face-attribute 'default nil :height 130)
 
 ;; Enabling IDO
 ;; (setq ido-enable-flex-matching t)

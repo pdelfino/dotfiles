@@ -67,7 +67,7 @@
 ;; Using Ivy from System Crafters
 (use-package ivy
   :diminish ;keeps ivy out of the mode line
-  :bind (;("C-s" . swiper)
+  :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
          ;("TAB" . ivy-alt-done)	
          ("C-l" . ivy-alt-done)

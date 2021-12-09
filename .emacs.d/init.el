@@ -226,6 +226,8 @@
 
 ;; Emacs minor mode to wrap region with tag or punctuations 
 (wrap-region-mode t)
+(wrap-region-add-wrapper "*" "*")
+(wrap-region-add-wrapper "/" "/")
 
 ;; Increase the font size
 (set-face-attribute 'default nil :height 130)

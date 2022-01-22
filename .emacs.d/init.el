@@ -69,7 +69,7 @@
   :diminish ;keeps ivy out of the mode line
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
-         ;("TAB" . ivy-alt-done)	
+         ;("TAB" . ivy-alt-done)    
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
@@ -81,7 +81,8 @@
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
-  (ivy-mode 1))
+  '((ivy-mode 1)
+    (ivy--regex-fuzzy 1x)))
 
 ;; Change mode-line to be more modern, like SpaceMacs
 (use-package doom-modeline
@@ -138,6 +139,11 @@
   :init
   (ivy-rich-mode 1))
 
+;; Make the last used command be the first-one
+(use-package ivy-prescient
+  :init
+  (ivy-prescient-mode 1))
+
 ;; Counsel is already installed
 ;; But, I can use use-package to customize it
 (use-package counsel
@@ -173,6 +179,11 @@
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
 
+
+;; Inserting wakatime in emacs
+(global-wakatime-mode)
+(setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
+
 ;; Snippet of text before starting Nyxt
 (defun my-nyxt-quickload-snippet ()
   "Insert snippet to load Nyxt."
@@ -180,6 +191,14 @@
   (insert "(ql:quickload :nyxt/gi-gtk)")
   (backward-word 2))
 (global-set-key (kbd "C-x C-M-n") 'my-nyxt-quickload-snippet)
+
+;; Another snippet of text before starting Nyxt
+(defun my-nyxt-quickload-snippet-start ()
+  "Insert snippet to load Nyxt."
+  (interactive)
+  (insert "(nyxt:start)")
+  (backward-word 2))
+(global-set-key (kbd "C-x C-M-s") 'my-nyxt-quickload-snippet)
 
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -278,7 +297,7 @@
  '(custom-safe-themes
    '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default))
  '(package-selected-packages
-   '(wrap-region transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
+   '(keycast wakatime-mode ivy-prescient prescient wrap-region transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
  '(safe-local-variable-values
    '((eval cl-flet
            ((enhance-imenu-lisp
@@ -310,3 +329,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'downcase-region 'disabled nil)

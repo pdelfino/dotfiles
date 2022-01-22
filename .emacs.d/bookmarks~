@@ -2,7 +2,22 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("ideias-list.org"
+(("meetings-with-john-topics"
+ (filename . "~/projects/job-employee-nyxt/meetings-with-john-questions.org")
+ (front-context-string)
+ (rear-context-string)
+ (position . 1))
+("README.org"
+ (filename . "~/projects/nyxt/README.org")
+ (front-context-string . "#+html: <img src")
+ (rear-context-string)
+ (position . 1))
+("nyxt-init"
+ (filename . "~/.config/nyxt/init.lisp")
+ (front-context-string . "\"C-space\" 'nothi")
+ (rear-context-string . "                ")
+ (position . 216))
+("ideias-list.org"
  (filename . "~/projects/ideias/ideias-list.org")
  (front-context-string . "* Ideias em gera")
  (rear-context-string)
@@ -17,7 +32,7 @@
  (front-context-string . "\n127.0.0.1 gp.re")
  (rear-context-string . "teway.reddit.com")
  (position . 5019685))
-("init.el"
+("emacs-init"
  (filename . "~/.dotfiles/.emacs.d/init.el")
  (front-context-string . ";; Clean-up the ")
  (rear-context-string)

@@ -67,9 +67,9 @@
 ;; Using Ivy from System Crafters
 (use-package ivy
   :diminish ;keeps ivy out of the mode line
-  :bind (;("C-s" . swiper)
+  :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
-         ;("TAB" . ivy-alt-done)	
+         ;("TAB" . ivy-alt-done)    
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
@@ -81,7 +81,8 @@
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
-  (ivy-mode 1))
+  '((ivy-mode 1)
+    (ivy--regex-fuzzy 1x)))
 
 ;; Change mode-line to be more modern, like SpaceMacs
 (use-package doom-modeline
@@ -95,7 +96,7 @@
    :init (load-theme 'doom-palenight t))
 
 ;; There will be no question about confirming load theme
-(setq sml/no-confirm-load-theme t)
+;; (setq sml/no-confirm-load-theme t)
 
 ;; Requisite to have cool icons on the doom-mode line
 (use-package all-the-icons
@@ -138,6 +139,11 @@
   :init
   (ivy-rich-mode 1))
 
+;; Make the last used command be the first-one
+(use-package ivy-prescient
+  :init
+  (ivy-prescient-mode 1))
+
 ;; Counsel is already installed
 ;; But, I can use use-package to customize it
 (use-package counsel
@@ -162,7 +168,7 @@
 (use-package general)
 
 (general-define-key
-  "C-M-j" 'counsel-switch-buffer)
+  "C-x C-b" 'counsel-switch-buffer)
 
 ;; Magit configuration
 (use-package magit
@@ -172,6 +178,39 @@
 ;; Helm for the win
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
+
+
+;; Inserting wakatime in emacs
+(global-wakatime-mode)
+(setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
+
+;; Snippet of text before starting Nyxt
+(defun my-nyxt-quickload-snippet ()
+  "Insert snippet to load Nyxt."
+  (interactive)
+  (insert "(ql:quickload :nyxt/gi-gtk)")
+  (backward-word 2))
+(global-set-key (kbd "C-x C-M-n") 'my-nyxt-quickload-snippet)
+
+;; Paredit Hooks 
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode) ;isso é para CL
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode) ;ativado via M-x
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+(add-hook 'slime-repl-mode-hook 'enable-paredit-mode) ;ativar o paredit no slime    
+
+;; Paredit Keybinding configuration
+(eval-after-load 'paredit
+  '(progn
+     (define-key paredit-mode-map (kbd "C->") 'paredit-forward-slurp-sexp)
+     (define-key paredit-mode-map (kbd "C-<") 'paredit-forward-barf-sexp)
+     (define-key paredit-mode-map (kbd "C-M-<") 'paredit-backward-slurp-sexp)
+     (define-key paredit-mode-map (kbd "C-M->") 'paredit-backward-barf-sexp)
+     (define-key paredit-mode-map (kbd "<C-right>") nil)
+     (define-key paredit-mode-map (kbd "<C-left>") nil)))
 
 ;; Keybindings
 ;;;; Jump to bookmarks
@@ -195,6 +234,14 @@
 
 ;; Launch emacs as full screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; Emacs minor mode to wrap region with tag or punctuations 
+(wrap-region-mode t)
+(wrap-region-add-wrapper "*" "*")
+(wrap-region-add-wrapper "/" "/")
+
+;; Increase the font size
+(set-face-attribute 'default nil :height 130)
 
 ;; Enabling IDO
 ;; (setq ido-enable-flex-matching t)
@@ -242,7 +289,32 @@
  '(custom-safe-themes
    '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default))
  '(package-selected-packages
-   '(paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich)))
+   '(ivy-prescient prescient wrap-region transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
+ '(safe-local-variable-values
+   '((eval cl-flet
+           ((enhance-imenu-lisp
+             (&rest keywords)
+             (dolist
+                 (keyword keywords)
+               (add-to-list 'lisp-imenu-generic-expression
+                            (list
+                             (purecopy
+                              (concat
+                               (capitalize keyword)
+                               (if
+                                   (string=
+                                    (substring-no-properties keyword -1)
+                                    "s")
+                                   "es" "s")))
+                             (purecopy
+                              (concat "^\\s-*("
+pp                                      (regexp-opt
+                                       (list
+                                        (concat "define-" keyword))
+                                       t)
+                                      "\\s-+\\(" lisp-mode-symbol-regexp "\\)"))
+                             2)))))
+           (enhance-imenu-lisp "bookmarklet-command" "class" "command" "ffi-method" "function" "mode" "parenscript" "user-class")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

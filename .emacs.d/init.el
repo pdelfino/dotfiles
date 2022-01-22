@@ -185,20 +185,20 @@
 (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
 
 ;; Snippet of text before starting Nyxt
-(defun my-nyxt-quickload-snippet ()
+(defun nyxt-quickload-gi-gtk ()
   "Insert snippet to load Nyxt."
   (interactive)
   (insert "(ql:quickload :nyxt/gi-gtk)")
   (backward-word 2))
-(global-set-key (kbd "C-x C-M-n") 'my-nyxt-quickload-snippet)
+(global-set-key (kbd "C-x C-M-n") 'nyxt-quickload-gi-gtk)
 
 ;; Another snippet of text before starting Nyxt
-(defun my-nyxt-quickload-snippet-start ()
+(defun nyxt-start-package ()
   "Insert snippet to load Nyxt."
   (interactive)
   (insert "(nyxt:start)")
   (backward-word 2))
-(global-set-key (kbd "C-x C-M-s") 'my-nyxt-quickload-snippet)
+(global-set-key (kbd "C-x C-M-s") 'nyxt-start-package)
 
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)

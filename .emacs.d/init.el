@@ -269,6 +269,21 @@
 (setq slime-lisp-implementations
       '((sbcl ("/home/pedro/projects/nyxt.sh" ""))))
 
+(define-minor-mode centered-point-mode
+  "Alaways center the cursor in the middle of the screen."
+  :lighter "..."
+  (cond (centered-point-mode (add-hook 'post-command-hook 'line-change))
+	(t (remove-hook 'post-command-hook 'line-change)))
+  )
+
+(defun line-change ()
+  (when (eq (get-buffer-window)
+            (selected-window))
+    (recenter)))
+
+(provide 'centeredpoint)
+(centered-point-mode t) ;;enable it globally
+
 ;; System Crafters does not use =custom-set-variables= or =custom-set-faces=
 ;; (custom-set-variables
 ;;  ;; custom-set-variables was added by Custom.

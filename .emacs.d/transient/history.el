@@ -1,4 +1,6 @@
-((magit-blame
+((magit-am
+  ("--3way"))
+ (magit-blame
   ("-w"))
  (magit-branch nil)
  (magit-commit nil)

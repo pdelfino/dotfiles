@@ -16,4 +16,5 @@
  (magit-rebase
   ("--autostash")
   nil)
+ (magit-stash nil)
  (magit-tag nil))

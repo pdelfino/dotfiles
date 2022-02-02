@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("meetings-with-john-topics"
+(("january.org"
+ (filename . "~/projects/job-employee-nyxt/january.org")
+ (front-context-string . "\n* January, 2022")
+ (rear-context-string)
+ (position . 1))
+("meetings-with-john-topics"
  (filename . "~/projects/job-employee-nyxt/meetings-with-john-questions.org")
  (front-context-string)
  (rear-context-string)

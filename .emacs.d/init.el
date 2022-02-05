@@ -194,7 +194,7 @@
 
 ;; Another snippet of text before starting Nyxt
 (defun nyxt-start-package ()
-  "Insert snippet to load Nyxt."
+  "Insert snippet to start Nyxt."
   (interactive)
   (insert "(nyxt:start)")
   (backward-word 2))
@@ -202,11 +202,19 @@
 
 ;; Another snippet of text before starting Nyxt
 (defun nyxt-inside-package ()
-  "Insert snippet to load Nyxt."
+  "Insert snippet to enter the nyxt package."
   (interactive)
   (insert "(in-package :nyxt)")
   (backward-word 2))
 (global-set-key (kbd "C-x C-M-p") 'nyxt-inside-package)
+
+;; Another snippet of text before starting Nyxt
+(defun slime-repl-back-CL-USER-package ()
+  "Insert snippet to load Nyxt."
+  (interactive)
+  (insert "(cl:in-package :cl-user)")
+  (backward-word 2))
+
 
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)

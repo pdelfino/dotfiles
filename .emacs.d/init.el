@@ -200,6 +200,14 @@
   (backward-word 2))
 (global-set-key (kbd "C-x C-M-s") 'nyxt-start-package)
 
+;; Another snippet of text before starting Nyxt
+(defun nyxt-inside-package ()
+  "Insert snippet to load Nyxt."
+  (interactive)
+  (insert "(in-package :nyxt)")
+  (backward-word 2))
+(global-set-key (kbd "C-x C-M-p") 'nyxt-inside-package)
+
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
@@ -315,6 +323,30 @@
    '(keycast wakatime-mode ivy-prescient prescient wrap-region transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
  '(safe-local-variable-values
    '((eval cl-flet
+           ((enhance-imenu-lisp
+             (&rest keywords)
+             (dolist
+                 (keyword keywords)
+               (add-to-list 'lisp-imenu-generic-expression
+                            (list
+                             (purecopy
+                              (concat
+                               (capitalize keyword)
+                               (if
+                                   (string=
+                                    (substring-no-properties keyword -1)
+                                    "s")
+                                   "es" "s")))
+                             (purecopy
+                              (concat "^\\s-*("
+                                      (regexp-opt
+                                       (list
+                                        (concat "define-" keyword))
+                                       t)
+                                      "\\s-+\\(" lisp-mode-symbol-regexp "\\)"))
+                             2)))))
+           (enhance-imenu-lisp "bookmarklet-command" "class" "command" "ffi-method" "function" "internal-page-command" "internal-page-command-global" "mode" "parenscript" "user-class"))
+     (eval cl-flet
            ((enhance-imenu-lisp
              (&rest keywords)
              (dolist

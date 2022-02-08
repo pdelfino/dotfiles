@@ -193,14 +193,6 @@
 (global-set-key (kbd "C-x C-M-n") 'nyxt-quickload-gi-gtk)
 
 ;; Another snippet of text before starting Nyxt
-(defun nyxt-start-package ()
-  "Insert snippet to start Nyxt."
-  (interactive)
-  (insert "(nyxt:start)")
-  (backward-word 2))
-(global-set-key (kbd "C-x C-M-s") 'nyxt-start-package)
-
-;; Another snippet of text before starting Nyxt
 (defun nyxt-inside-package ()
   "Insert snippet to enter the nyxt package."
   (interactive)
@@ -209,12 +201,19 @@
 (global-set-key (kbd "C-x C-M-p") 'nyxt-inside-package)
 
 ;; Another snippet of text before starting Nyxt
+(defun nyxt-start-package ()
+  "Insert snippet to start Nyxt."
+  (interactive)
+  (insert "(start)")
+  (backward-word 2))
+(global-set-key (kbd "C-x C-M-s") 'nyxt-start-package)
+
+;; Another snippet of text before starting Nyxt
 (defun slime-repl-back-CL-USER-package ()
-  "Insert snippet to load Nyxt."
+  "Insert snippet to get back to the CL-USER package."
   (interactive)
   (insert "(cl:in-package :cl-user)")
   (backward-word 2))
-
 
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -386,3 +385,4 @@
  )
 (put 'downcase-region 'disabled nil)
 ; insert comment test
+(put 'upcase-region 'disabled nil)

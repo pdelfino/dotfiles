@@ -215,6 +215,9 @@
   (insert "(cl:in-package :cl-user)")
   (backward-word 2))
 
+;; Trying to install a rest-client
+(use-package restclient)
+
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
@@ -327,7 +330,7 @@
  '(custom-safe-themes
    '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default))
  '(package-selected-packages
-   '(keycast wakatime-mode ivy-prescient prescient wrap-region transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
+   '(restclient keycast wakatime-mode ivy-prescient prescient wrap-region transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
  '(safe-local-variable-values
    '((eval cl-flet
            ((enhance-imenu-lisp

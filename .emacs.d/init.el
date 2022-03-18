@@ -192,6 +192,14 @@
   (backward-word 2))
 (global-set-key (kbd "C-x C-M-n") 'nyxt-quickload-gi-gtk)
 
+;; Snippet of text before starting Nyxt
+(defun hermes-quickload ()
+  "Insert snippet to load Hermes."
+  (interactive)
+  (insert "(ql:quickload :hermes)")
+  (backward-word 2))
+(global-set-key (kbd "C-x C-M-q") 'hermes-quickload)
+
 ;; Another snippet of text before starting Nyxt
 (defun nyxt-inside-package ()
   "Insert snippet to enter the nyxt package."
@@ -199,6 +207,14 @@
   (insert "(in-package :nyxt)")
   (backward-word 2))
 (global-set-key (kbd "C-x C-M-p") 'nyxt-inside-package)
+
+;; Another snippet of text before starting Hermes
+(defun hermes-inside-package ()
+  "Insert snippet to enter the nyxt package."
+  (interactive)
+  (insert "(in-package :hermes)")
+  (backward-word 2))
+(global-set-key (kbd "C-x C-M-h") 'hermes-inside-package)
 
 ;; Another snippet of text before starting Nyxt
 (defun nyxt-start-package ()
@@ -216,7 +232,9 @@
   (backward-word 2))
 
 ;; Trying to install a rest-client
-(use-package restclient)
+(use-package restclient
+  :ensure t
+  :mode (("\\.http\\'" . restclient-mode)))
 
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)

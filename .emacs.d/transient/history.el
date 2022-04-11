@@ -1,4 +1,5 @@
-((magit-am
+((git-commit-insert-pseudo-header nil)
+ (magit-am
   ("--3way"))
  (magit-blame
   ("-w"))

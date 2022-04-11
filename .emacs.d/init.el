@@ -236,6 +236,10 @@
   :ensure t
   :mode (("\\.http\\'" . restclient-mode)))
 
+;; Trying to install org-drill
+(use-package org-drill
+  :ensure t)
+
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)

@@ -2,7 +2,27 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("january.org"
+(("invoice-04.org"
+ (filename . "~/projects/job-employee-nyxt/invoices-and-nota-fiscal/invoice-04.org")
+ (front-context-string . "\n\n** Consulting ")
+ (rear-context-string . "l April the ????")
+ (position . 56))
+("career-prospects"
+ (filename . "~/projects/career-opportunities/README.org")
+ (front-context-string . "* Interesting pr")
+ (rear-context-string)
+ (position . 1))
+("asd-file-for-nyxt"
+ (filename . "~/projects/nyxt/nyxt.asd")
+ (front-context-string . ";;;; SPDX-FileCo")
+ (rear-context-string)
+ (position . 1))
+("february.org"
+ (filename . "~/projects/job-employee-nyxt/february.org")
+ (front-context-string . "* February, 2022")
+ (rear-context-string)
+ (position . 1))
+("january.org"
  (filename . "~/projects/job-employee-nyxt/january.org")
  (front-context-string . "\n* January, 2022")
  (rear-context-string)

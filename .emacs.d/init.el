@@ -15,7 +15,7 @@
 (menu-bar-mode -1)
 
 ;; Set visual bell (like when you reach the end of the buffer)
-(setq visible-bell t) ; not sure if the sound is not better
+(setq visible-bell t) ; not sure if the sound would be actually better
 
 ;; Set the windon fringe size
 (set-fringe-mode 10)

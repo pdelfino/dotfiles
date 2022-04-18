@@ -100,7 +100,7 @@
 ;; Crafters thinks the height is too high, it is possible to customize
 ;; it tweaking the variable value using `:custom'.
 (use-package doom-modeline
-  :ensure t
+  :ensure t;; there is no need for `:ensure' due to use-package-always-ensure
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
@@ -124,10 +124,34 @@
   (setq which-key-idle-delay 0))
 
 ;; An addition to the ivy interface showing me the details of all the
-;; commands.  `M-x' is way more powerful now
+;; commands.  `M-x' is way more powerful now, showing the
+;; documentation string and the keybinding.
 (use-package ivy-rich
   :init
   (ivy-rich-mode 1))
+
+;; Counsel is already installed.  But, I can use use-package to
+;; customize it. `counsel-load-theme' allows me to change the theme
+;; with emacs runnig.
+(use-package counsel
+  :bind (("M-x" . counsel-M-x) ;; `M-o' in a list provides extra actions!
+         ("C-x b" . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history)))
+
+;; An augmentation of Emacs help system. `:bind` does a remapping of a
+;; key that is binding to function to trigger another function. This
+;; is good if you already like a keybinding in Emacs.
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
 
 ;; Use the same theme as System Crafters.  This brings themes
 ;; available in Doom Emacs.
@@ -145,27 +169,6 @@
 (use-package ivy-prescient
   :init
   (ivy-prescient-mode 1))
-
-;; Counsel is already installed.  But, I can use use-package to
-;; customize it.  counse-load-theme allows me to change the theme with
-;; emacs runnig.
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-         ("C-x b" . counsel-ibuffer)
-         ("C-x C-f" . counsel-find-file)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history)))
-
-;; Augmentation of Emacs help system
-(use-package helpful
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
 
 ;;  More convenient key definitions in emacs 
 (use-package general)

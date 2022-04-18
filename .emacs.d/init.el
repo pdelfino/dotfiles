@@ -153,7 +153,7 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-;; Use the same theme as System Crafters.  This brings themes
+;; Use the same theme as System Crafters. This package brings themes
 ;; available in Doom Emacs.
 (use-package doom-themes
   :init (load-theme 'doom-palenight t))
@@ -323,8 +323,7 @@
   "Alaways center the cursor in the middle of the screen."
   :lighter "..."
   (cond (centered-point-mode (add-hook 'post-command-hook 'line-change))
-	(t (remove-hook 'post-command-hook 'line-change)))
-  )
+	(t (remove-hook 'post-command-hook 'line-change))))
 
 (defun line-change ()
   (when (eq (get-buffer-window)
@@ -334,7 +333,8 @@
 (provide 'centeredpoint)
 (centered-point-mode t) ;;enable it globally
 
-;; System Crafters does not use =custom-set-variables= or =custom-set-faces=
+;; System Crafters does not use `custom-set-variables' or `custom-set-faces'
+
 ;; (custom-set-variables
 ;;  ;; custom-set-variables was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.

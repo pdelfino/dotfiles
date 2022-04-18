@@ -123,6 +123,12 @@
   :config
   (setq which-key-idle-delay 0))
 
+;; An addition to the ivy interface showing me the details of all the
+;; commands.  `M-x' is way more powerful now
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
 ;; Use the same theme as System Crafters.  This brings themes
 ;; available in Doom Emacs.
 (use-package doom-themes
@@ -134,12 +140,6 @@
 ;; Requisite to have cool icons on the doom-mode line.
 (use-package all-the-icons
   :if (display-graphic-p))
-
-;; Showing me the details of all the commands
-;; M=x is way more powerful now
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
 
 ;; Make the last used command be the first-one
 (use-package ivy-prescient

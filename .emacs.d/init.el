@@ -302,6 +302,11 @@
 ;; using mouse, mouse pad, and arrow keys (up, down, etc)
 ;; (require 'disable-mouse) (global-disable-mouse-mode)
 (mouse-wheel-mode 0)
+;; Disable arrow keys to enforce C-n, C-p, C-f and C-b use
+(global-unset-key (kbd "<left>") )
+(global-unset-key (kbd "<right>") )
+(global-unset-key (kbd "<up>") )
+(global-unset-key (kbd "<down>") )
 
 (slime-setup '(slime-fancy slime-asdf slime-indentation slime-sbcl-exts slime-scratch))
 

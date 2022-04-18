@@ -33,6 +33,7 @@
 (require 'package)
 
 ;; Package-archives is a variable holding an alist with sources
+;; where you can pull packages from!
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
 			 ("org" . "https://orgmode.org/elpa/")
 			 ("elpa" . "https://elpa.gnu.org/packages/")))
@@ -49,7 +50,7 @@
 ;;   (package-refresh-contents)
 ;;   (package-install 'use-package))
 
-;; Try to install use-package, in case it is not already install
+;; In case it is not already installed, install use-package
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 

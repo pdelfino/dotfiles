@@ -46,10 +46,6 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; (unless (package-installed-p 'use-package)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package))
-
 ;; In case it is not already installed, install use-package
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
@@ -94,7 +90,7 @@
 ;; Use the same theme as System Crafters
 ;; This brings themes available in Doom Emacs
 (use-package doom-themes
-   :init (load-theme 'doom-palenight t))
+  :init (load-theme 'doom-palenight t))
 
 ;; There will be no question about confirming load theme
 ;; (setq sml/no-confirm-load-theme t)
@@ -145,8 +141,9 @@
   :init
   (ivy-prescient-mode 1))
 
-;; Counsel is already installed
-;; But, I can use use-package to customize it
+;; Counsel is already installed.  But, I can use use-package to
+;; customize it.  counse-load-theme allows me to change the theme with
+;; emacs runnig.
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)

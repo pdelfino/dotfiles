@@ -52,11 +52,6 @@
  (front-context-string . "# Edit this conf")
  (rear-context-string)
  (position . 1))
-("hosts.nix"
- (filename . "/etc/nixos/hosts.nix")
- (front-context-string . "\n127.0.0.1 gp.re")
- (rear-context-string . "teway.reddit.com")
- (position . 5019685))
 ("emacs-init"
  (filename . "~/.dotfiles/.emacs.d/init.el")
  (front-context-string . ";; Clean-up the ")

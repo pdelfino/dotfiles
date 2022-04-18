@@ -109,6 +109,13 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; A package that displays available keybindings in popup 
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1))
+
 ;; Use the same theme as System Crafters
 ;; This brings themes available in Doom Emacs
 (use-package doom-themes
@@ -127,13 +134,6 @@
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
-
-;; A package that displays available keybindings in popup 
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 1))
 
 ;; Showing me the details of all the commands
 ;; M=x is way more powerful now

@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("invoice-04.org"
+(("hermes-main"
+ (filename . "~/quicklisp/local-projects/hermes/main.lisp")
+ (front-context-string . "(in-package :her")
+ (rear-context-string)
+ (position . 1))
+("invoice-04.org"
  (filename . "~/projects/job-employee-nyxt/invoices-and-nota-fiscal/invoice-04.org")
  (front-context-string . "\n\n** Consulting ")
  (rear-context-string . "l April the ????")
@@ -12,7 +17,7 @@
  (front-context-string . "* Interesting pr")
  (rear-context-string)
  (position . 1))
-("asd-file-for-nyxt"
+("nyxt-asd-file"
  (filename . "~/projects/nyxt/nyxt.asd")
  (front-context-string . ";;;; SPDX-FileCo")
  (rear-context-string)

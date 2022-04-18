@@ -1,70 +1,70 @@
-;; Clean-up the user interface
-;; No start-up screen with Emacs logo
+;; Clean-up the user interface.
+;; No start-up screen with Emacs logo.
 (setq inhibit-startup-screen t)
 
-;; Disable the visible scrollbar
+;; Disable the visible scrollbar.
 (scroll-bar-mode -1) 
 
-;; Disable the toolbar
+;; Disable the toolbar.
 (tool-bar-mode -1)
 
-;; Disable tool tips
+;; Disable tool tips.
 (tooltip-mode -1)
 
-;; Disable menu-bar-mode
+;; Disable menu-bar-mode.
 (menu-bar-mode -1)
 
-;; Set visual bell (like when you reach the end of the buffer)
-(setq visible-bell t) ; not sure if the sound would be actually better
+;; Set visual bell (like when you reach the end of the buffer).
+(setq visible-bell t) ; not sure if the sound would be actually better.
 
-;; Set the windon fringe size
+;; Set the windon fringe size.
 (set-fringe-mode 10)
 
 ;; Use spaces, not tabs, for indentation.
 (setq-default indent-tabs-mode nil)
 
-;; Fontsize
+;; Fontsize.
 ;;(set-face-attribute 'default nil :font "Fira Code Retina" :height 200)
 
-;; Default theme initially used by System Crafters
+;; Default theme initially used by System Crafters.
 ;; (load-theme 'wombat)
 
-;; This brings to the environment all the package manager functions
+;; This brings to the environment all the package manager functions.
 (require 'package)
 
-;; Package-archives is a variable holding an alist with sources
-;; where you can pull packages from!
+;; Package-archives is a variable holding an alist with sources where
+;; you can pull packages from!
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
 			 ("org" . "https://orgmode.org/elpa/")
 			 ("elpa" . "https://elpa.gnu.org/packages/")))
 
-;; Initializes the package system and prepares it to be used
+;; Initializes the package system and prepares it to be used.
 (package-initialize)
 
-;; Unless the package archive exists, update the package list
-;; This is useful on the very first load
+;; Unless the package archive exists, update the package list.
+;; This is useful on the very first load.
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; In case it is not already installed, install use-package
+;; In case it is not already installed, install use-package.
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
 ;; At this point, use-package must be available, and it will be used
-;; use-package is a command to install packages
-;; just do `(use-packge package-name)'
+;; use-package is a command to install packages just
+;; do `(use-packge package-name)'.
 (require 'use-package)
 
-;; Guarantees the download of packages before they are run
-;; Useful when running config file from the very first time
+;; Guarantees the download of packages before they are run. Useful
+;; when running config file from the very first time.
 (setq use-package-always-ensure t)
 
-;; Display column numbers
+;; Display column numbers.
 (column-number-mode)
 
-;; Display line numbers
-;; This is better than old linum-mode
-;;(global-display-line-numbers-mode t) ;;Mode line gives a lot of info, no need for this anymore
+;; Display line numbers.
+;; This is better than old `linum-mode'.
+;;(global-display-line-numbers-mode t) ;;Mode line gives a lot of info, no need for this anymore.
 
 ;; Disable line numbers for some modes.
 ;; A hook is a variable that holds a list of functions. This
@@ -73,13 +73,13 @@
 		shell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-;; Package to show keybindings being used
+;; Package to show keybindings being used.
 (use-package command-log-mode)
 
-;; Using Ivy from System Crafters
+;; Using Ivy from System Crafters.
 (use-package ivy
-  :diminish ;keeps ivy out of the mode line
-  :bind (("C-s" . swiper) ;; this is a cool way to do key binding
+  :diminish ;; keeps ivy out of the mode line.
+  :bind (("C-s" . swiper) ;; this is a cool way to do key binding.
          :map ivy-minibuffer-map
          ;("TAB" . ivy-alt-done)    
          ("C-l" . ivy-alt-done)
@@ -96,7 +96,7 @@
   '((ivy-mode 1)
     (ivy--regex-fuzzy 1x)))
 
-;; Change mode-line to be more modern, like SpaceMacs Since System
+;; Change `mode-line' to be more modern, like SpaceMacs Since System
 ;; Crafters thinks the height is too high, it is possible to customize
 ;; it tweaking the variable value using `:custom'.
 (use-package doom-modeline
@@ -109,22 +109,22 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; A package that displays available keybindings in popup 
+;; A package that displays available keybindings in popup.
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1))
 
-;; Use the same theme as System Crafters
-;; This brings themes available in Doom Emacs
+;; Use the same theme as System Crafters.  This brings themes
+;; available in Doom Emacs.
 (use-package doom-themes
   :init (load-theme 'doom-palenight t))
 
 ;; There will be no question about confirming load theme
 ;; (setq sml/no-confirm-load-theme t)
 
-;; Requisite to have cool icons on the doom-mode line
+;; Requisite to have cool icons on the doom-mode line.
 (use-package all-the-icons
   :if (display-graphic-p))
 

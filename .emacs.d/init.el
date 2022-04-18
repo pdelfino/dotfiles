@@ -52,6 +52,7 @@
 
 ;; At this point, use-package must be available, and it will be used
 ;; use-package is a command to install packages
+;; just do `(use-packge package-name)'
 (require 'use-package)
 
 ;; Guarantees the download of packages before they are run
@@ -64,7 +65,7 @@
 ;; Using Ivy from System Crafters
 (use-package ivy
   :diminish ;keeps ivy out of the mode line
-  :bind (("C-s" . swiper)
+  :bind (("C-s" . swiper) ;; this is a cool way to do key binding
          :map ivy-minibuffer-map
          ;("TAB" . ivy-alt-done)    
          ("C-l" . ivy-alt-done)
@@ -297,9 +298,9 @@
 ;; Flyspell
 (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
 
-;; Mouse hacking -> enforce a keyboard driven experience
-;; (require 'disable-mouse)
-;; (global-disable-mouse-mode)
+;; Mouse hacking -> enforce a keyboard driven experience Try to avoid
+;; using mouse, mouse pad, and arrow keys (up, down, etc)
+;; (require 'disable-mouse) (global-disable-mouse-mode)
 (mouse-wheel-mode 0)
 
 (slime-setup '(slime-fancy slime-asdf slime-indentation slime-sbcl-exts slime-scratch))

@@ -59,6 +59,20 @@
 ;; Useful when running config file from the very first time
 (setq use-package-always-ensure t)
 
+;; Display column numbers
+(column-number-mode)
+
+;; Display line numbers
+;; This is better than old linum-mode
+;;(global-display-line-numbers-mode t) ;;Mode line gives a lot of info, no need for this anymore
+
+;; Disable line numbers for some modes.
+;; A hook is a variable that holds a list of functions. This
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+		shell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
 ;; Package to show keybindings being used
 (use-package command-log-mode)
 
@@ -90,6 +104,11 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
+;; Highlights parens, brackets, and braces according to their depth.
+;; Hook keyword is being used with `:hook'.
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
 ;; Use the same theme as System Crafters
 ;; This brings themes available in Doom Emacs
 (use-package doom-themes
@@ -101,23 +120,6 @@
 ;; Requisite to have cool icons on the doom-mode line
 (use-package all-the-icons
   :if (display-graphic-p))
-
-;; Display column numbers
-(column-number-mode)
-
-;; Display line numbers
-;; This is better than old linum-mode
-;;(global-display-line-numbers-mode t) ;;Mode line gives a lot of info, no need for this anymore
-
-;; Disable line numbers for some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-		shell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-;; Highlights parens, brackets, and braces according to their depth
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; Configure Rainbow Delimiters
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)

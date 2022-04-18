@@ -82,7 +82,9 @@
   '((ivy-mode 1)
     (ivy--regex-fuzzy 1x)))
 
-;; Change mode-line to be more modern, like SpaceMacs
+;; Change mode-line to be more modern, like SpaceMacs Since System
+;; Crafters thinks the height is too high, it is possible to customize
+;; it tweaking the variable value using `:custom'.
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)

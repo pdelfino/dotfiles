@@ -105,7 +105,7 @@
 
 ;; Display line numbers
 ;; This is better than old linum-mode
-(global-display-line-numbers-mode t)
+;;(global-display-line-numbers-mode t) ;;Mode line gives a lot of info, no need for this anymore
 
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook

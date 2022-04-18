@@ -109,12 +109,14 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; A package that displays available keybindings in popup.
+;; A package that displays available keybindings in popup.  Read the
+;; whole prompt buffer. In the bottom, there is relevant information
+;; such as pressing `C-h' for moving around the pagination.
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 1))
+  (setq which-key-idle-delay 0))
 
 ;; Use the same theme as System Crafters.  This brings themes
 ;; available in Doom Emacs.

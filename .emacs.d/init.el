@@ -109,6 +109,13 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; Configure Rainbow Delimiters
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
+
 ;; A package that displays available keybindings in popup.  Read the
 ;; whole prompt buffer. In the bottom, there is relevant information
 ;; such as pressing `C-h' for moving around the pagination.
@@ -129,13 +136,6 @@
 ;; Requisite to have cool icons on the doom-mode line.
 (use-package all-the-icons
   :if (display-graphic-p))
-
-;; Configure Rainbow Delimiters
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
 
 ;; Showing me the details of all the commands
 ;; M=x is way more powerful now

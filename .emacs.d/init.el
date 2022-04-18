@@ -107,14 +107,12 @@
 ;; Highlights parens, brackets, and braces according to their depth.
 ;; Hook keyword is being used with `:hook'.
 (use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-;; Configure Rainbow Delimiters
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
+  :hook ((prog-mode . rainbow-delimiters-mode)
+         (emacs-lisp-mode-hook . rainbow-delimiters-mode)
+         (ielm-mode-hook . rainbow-delimiters-mode)
+         (lisp-mode-hook . rainbow-delimiters-mode)
+         (lisp-interaction-mode-hook . rainbow-delimiters-mode)
+         (slime-repl-mode-hook . rainbow-delimiters-mode)))
 
 ;; A package that displays available keybindings in popup.  Read the
 ;; whole prompt buffer. In the bottom, there is relevant information
@@ -183,7 +181,6 @@
 ;; Helm for the win
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
-
 
 ;; Inserting wakatime in emacs
 (global-wakatime-mode)

@@ -195,10 +195,6 @@
   :init
   (ivy-prescient-mode 1))
 
-;; Helm for the win
-;;(global-set-key (kbd "M-x") 'helm-M-x)
-;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
-
 ;; Inserting wakatime in emacs
 (global-wakatime-mode)
 (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")

@@ -99,7 +99,6 @@
 ;; Requisite to have cool icons on the doom-mode line.  The first time
 ;; this configuration is loaded on a new machine, it is necessary to
 ;; run `M-x' `all-the-icons-install-font-sizes'.
-
 (use-package all-the-icons
   :if (display-graphic-p))
 
@@ -110,6 +109,9 @@
   :ensure t;; there is no need for `:ensure' due to use-package-always-ensure
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
+
+;; There will be no question about confirming load theme
+(setq sml/no-confirm-load-theme t)
 
 ;; Use the same theme as System Crafters. This package brings themes
 ;; available in Doom Emacs.
@@ -164,9 +166,6 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
-
-;; There will be no question about confirming load theme
-;; (setq sml/no-confirm-load-theme t)
 
 ;;  More convenient key definitions in emacs 
 (use-package general)

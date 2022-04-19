@@ -186,7 +186,8 @@
 ;; Magit configuration
 (use-package magit
   :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+  :hook ((git-commit-setup . git-commit-turn-on-flyspell)))
 
 ;; Make the last used command be the first-one.
 ;; Added by me. Not mentioned on System Crafters.
@@ -313,9 +314,6 @@
 ;; (setq ido-enable-flex-matching t)
 ;; (setq ido-everywhere t)
 ;; (ido-mode 1)
-
-;; Flyspell
-(add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
 
 ;; Mouse hacking -> enforce a keyboard driven experience Try to avoid
 ;; using mouse, mouse pad, and arrow keys (up, down, etc)

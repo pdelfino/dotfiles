@@ -120,11 +120,11 @@
 ;; Hook keyword is being used with `:hook'.
 (use-package rainbow-delimiters
   :hook ((prog-mode . rainbow-delimiters-mode)
-         (emacs-lisp-mode-hook . rainbow-delimiters-mode)
-         (ielm-mode-hook . rainbow-delimiters-mode)
-         (lisp-mode-hook . rainbow-delimiters-mode)
-         (lisp-interaction-mode-hook . rainbow-delimiters-mode)
-         (slime-repl-mode-hook . rainbow-delimiters-mode)))
+         (emacs-lisp-mode . rainbow-delimiters-mode)
+         (ielm-mode . rainbow-delimiters-mode)
+         (lisp-mode . rainbow-delimiters-mode)
+         (lisp-interaction-mode . rainbow-delimiters-mode)
+         (slime-repl-mode . rainbow-delimiters-mode)))
 
 ;; A package that displays available keybindings in popup.  Read the
 ;; whole prompt buffer. In the bottom, there is relevant information

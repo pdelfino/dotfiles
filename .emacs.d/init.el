@@ -111,6 +111,11 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
+;; Use the same theme as System Crafters. This package brings themes
+;; available in Doom Emacs.
+(use-package doom-themes
+  :init (load-theme 'doom-palenight t))
+
 ;; Highlights parens, brackets, and braces according to their depth.
 ;; Hook keyword is being used with `:hook'.
 (use-package rainbow-delimiters
@@ -159,11 +164,6 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
-
-;; Use the same theme as System Crafters. This package brings themes
-;; available in Doom Emacs.
-(use-package doom-themes
-  :init (load-theme 'doom-palenight t))
 
 ;; There will be no question about confirming load theme
 ;; (setq sml/no-confirm-load-theme t)

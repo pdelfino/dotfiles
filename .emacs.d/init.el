@@ -168,11 +168,6 @@
 ;; There will be no question about confirming load theme
 ;; (setq sml/no-confirm-load-theme t)
 
-;; Make the last used command be the first-one
-(use-package ivy-prescient
-  :init
-  (ivy-prescient-mode 1))
-
 ;;  More convenient key definitions in emacs 
 (use-package general)
 
@@ -183,6 +178,12 @@
 (use-package magit
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+;; Make the last used command be the first-one.
+;; Added by me. Not mentioned on System Crafters.
+(use-package ivy-prescient
+  :init
+  (ivy-prescient-mode 1))
 
 ;; Helm for the win
 ;;(global-set-key (kbd "M-x") 'helm-M-x)

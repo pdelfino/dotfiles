@@ -96,6 +96,13 @@
   '((ivy-mode 1)
     (ivy--regex-fuzzy 1x)))
 
+;; Requisite to have cool icons on the doom-mode line.  The first time
+;; this configuration is loaded on a new machine, it is necessary to
+;; run `M-x' `all-the-icons-install-font-sizes'.
+
+(use-package all-the-icons
+  :if (display-graphic-p))
+
 ;; Change `mode-line' to be more modern, like SpaceMacs Since System
 ;; Crafters thinks the height is too high, it is possible to customize
 ;; it tweaking the variable value using `:custom'.
@@ -160,10 +167,6 @@
 
 ;; There will be no question about confirming load theme
 ;; (setq sml/no-confirm-load-theme t)
-
-;; Requisite to have cool icons on the doom-mode line.
-(use-package all-the-icons
-  :if (display-graphic-p))
 
 ;; Make the last used command be the first-one
 (use-package ivy-prescient

@@ -189,6 +189,28 @@
   ("k" shrink-window "out")
   ("f" nil "finished" :exit t))
 (global-set-key (kbd "C-x C-M-w") 'window-scale/body)
+
+;; Projectile helps to navigate on different projects, it is a project
+;; interaction library.
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap ;; "C-c p" as prefix key for all projectile commands.
+  ("C-c p" . projectile-command-map)
+  :init
+  ;; Some things on quicklisp/local-projects directory too...
+  (when (file-directory-p "~/projects")
+    (setq projectile-project-search-path '("~/projects")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+;; After doing `C-p p p' (projectile-switch-project), press `M-o', and
+;; see the mutliple actions will be listed. This is coming from
+;; counsel-projectile. The killer feature is: counsel-projectile-rg
+;; meaning riprep and bounded to `C-c p s r'.
+(use-package counsel-projectile
+  :config (counsel-projectile-mode)) ;;
+
 ;; Magit configuration
 (use-package magit
   :custom

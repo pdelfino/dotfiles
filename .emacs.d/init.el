@@ -183,6 +183,12 @@
   ("k" text-scale-decrease "out")
   ("f" nil "finished" :exit t))
 
+(defhydra window-scale (:timeout 4)
+  "Enlarge or shrink window size."
+  ("j" enlarge-window "enlarge")
+  ("k" shrink-window "out")
+  ("f" nil "finished" :exit t))
+(global-set-key (kbd "C-x C-M-w") 'window-scale/body)
 ;; Magit configuration
 (use-package magit
   :custom

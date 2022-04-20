@@ -17,9 +17,10 @@
  (magit-log:--grep " 79504ca")
  (magit-pull nil
              ("--rebase"))
- (magit-push nil
-             ("--force-with-lease")
-             ("--force"))
+ (magit-push
+  ("--force-with-lease")
+  nil
+  ("--force"))
  (magit-rebase
   ("--autostash")
   nil)

@@ -204,7 +204,7 @@
     (setq projectile-project-search-path '("~/projects")))
   (setq projectile-switch-project-action #'projectile-dired))
 
-;; After doing `C-p p p' (projectile-switch-project), press `M-o', and
+;; After doing `C-c p p' (projectile-switch-project), press `M-o', and
 ;; see the mutliple actions will be listed. This is coming from
 ;; counsel-projectile. The killer feature is: counsel-projectile-rg
 ;; meaning riprep and bounded to `C-c p s r'.

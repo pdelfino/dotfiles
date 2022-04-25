@@ -217,6 +217,11 @@
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
   :hook ((git-commit-setup . git-commit-turn-on-flyspell)))
 
+;; Forge makes it easy to pull down information form GitHub
+;; repositories - for instance, Pull Requests. It is necessary to some
+;; working on authentication.
+;;(use-package forge)
+
 ;; Make the last used command be the first-one.
 ;; Added by me. Not mentioned on System Crafters.
 (use-package ivy-prescient

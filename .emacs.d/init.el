@@ -154,7 +154,7 @@
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
 
-;; An augmentation of Emacs help system. `:bind` does a remapping of a
+;; An augmentation of Emacs help system. `:bind' does a remapping of a
 ;; key that is binding to function to trigger another function. This
 ;; is good if you already like a keybinding in Emacs.
 (use-package helpful
@@ -167,7 +167,7 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-;;  More convenient key definitions in emacs 
+;;  More convenient key definitions in Emacs.
 (use-package general)
 
 (general-define-key

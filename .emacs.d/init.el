@@ -206,8 +206,8 @@
 
 ;; After doing `C-c p p' (projectile-switch-project), press `M-o', and
 ;; see the mutliple actions will be listed. This is coming from
-;; counsel-projectile. The killer feature is: counsel-projectile-rg
-;; meaning riprep and bounded to `C-c p s r'.
+;; counsel-projectile. The killer feature is:
+;; counsel-projectile-ripgrep which is bounded to `C-c p s r'.
 (use-package counsel-projectile
   :config (counsel-projectile-mode)) ;;
 

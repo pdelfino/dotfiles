@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("flashcards-emacs"
+(("invoice-05.org"
+ (filename . "~/projects/job-employee-nyxt/invoices-and-nota-fiscal/invoice-05.org")
+ (front-context-string)
+ (rear-context-string . " 0:24\n    :END:\n")
+ (position . 1936))
+("flashcards-emacs"
  (filename . "~/projects/emacs-flashcards/emacs.org")
  (front-context-string . "* Emacs flashcar")
  (rear-context-string)
@@ -12,11 +17,6 @@
  (front-context-string . "(in-package :her")
  (rear-context-string)
  (position . 1))
-("invoice-04.org"
- (filename . "~/projects/job-employee-nyxt/invoices-and-nota-fiscal/invoice-04.org")
- (front-context-string . "\n\n** Consulting ")
- (rear-context-string . "l April the ????")
- (position . 56))
 ("career-prospects"
  (filename . "~/projects/career-opportunities/README.org")
  (front-context-string . "* Interesting pr")

@@ -222,15 +222,28 @@
 ;; working on authentication.
 ;;(use-package forge)
 
+
+
+;; Inserting wakatime in emacs
+(global-wakatime-mode)
+(setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
+
 ;; Make the last used command be the first-one.
 ;; Added by me. Not mentioned on System Crafters.
 (use-package ivy-prescient
   :init
   (ivy-prescient-mode 1))
 
-;; Inserting wakatime in emacs
-(global-wakatime-mode)
-(setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
+;; Function to create an org-clock command to sum an especific region
+(defun org-clock-sum-current-region (beg end)
+  "Sum the total amount of time in the marked region."
+  (interactive "r")
+  (let ((s (buffer-substring-no-properties beg end)))
+    (with-temp-buffer
+      (insert "* foo\n")
+      (insert s)
+      (org-clock-sum)
+      (message (format "%d" org-clock-file-total-minutes)))))
 
 ;; Snippet of text before starting Nyxt
 (defun nyxt-quickload-gi-gtk ()

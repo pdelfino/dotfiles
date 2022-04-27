@@ -20,9 +20,8 @@
  (magit-push nil
              ("--force-with-lease")
              ("--force"))
- (magit-rebase
-  ("--autostash")
-  nil)
+ (magit-rebase nil
+               ("--autostash"))
  (magit-reset nil)
  (magit-revision-history "ORIG_HEAD")
  (magit-stash nil)

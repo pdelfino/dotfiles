@@ -222,6 +222,12 @@
 ;; working on authentication.
 ;;(use-package forge)
 
+;; Org-mode is built-in to Emacs. But, if you install it with
+;; `use-package', then it is going to be the last version.  Use
+;; `describe-variable'to check `org-version'.
+(use-package org
+  :config
+  (setq org-ellipsis " ▾"));; instead of having `...' there is `▾'.
 
 
 ;; Inserting wakatime in emacs

@@ -253,9 +253,9 @@
 (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
 
 ;; Testing this to see if it helps with my problems when opening slime buffer
-(use-package golden-ratio
-  :init
-  (golden-ratio-mode 1))
+;; (use-package golden-ratio
+;;   :init
+;;   (golden-ratio-mode 1))
 
 ;; Make the last used command be the first-one.
 ;; Added by me. Not mentioned on System Crafters.

@@ -330,6 +330,11 @@
 (use-package org-drill
   :ensure t)
 
+;; Trying to install browse-kill-ring
+(use-package browse-kill-ring
+  :ensure t)
+(global-set-key (kbd "C-y") 'browse-kill-ring)
+
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)

@@ -126,7 +126,8 @@
          (ielm-mode . rainbow-delimiters-mode)
          (lisp-mode . rainbow-delimiters-mode)
          (lisp-interaction-mode . rainbow-delimiters-mode)
-         (slime-repl-mode . rainbow-delimiters-mode)))
+         (slime-repl-mode . rainbow-delimiters-mode)
+         (clojure-repl-mode . rainbow-delimiters-mode)))
 
 ;; A package that displays available keybindings in popup.  Read the
 ;; whole prompt buffer. In the bottom, there is relevant information
@@ -330,15 +331,20 @@
 (use-package org-drill
   :ensure t)
 
-;; Trying to install browse-kill-ring
-(use-package browse-kill-ring
+;; Trying to install clojure-mode
+(use-package clojure-mode
+  :ensure t)
+
+;; Trying to install cider to start a REPL directly in Clojure
+(use-package cider
   :ensure t)
 
 ;; Trying to install browse-kill-ring
 ;; There is no need, =counsel-yank-pop= solves everything!
+;; =counsel-yank-pop= enhances built-in =yank-pop=.
 ;; (use-package browse-kill-ring
 ;;   :ensure t)
-(global-set-key (kbd "C-y") 'counsel-yank-pop)
+(global-set-key (kbd "M-y") 'counsel-yank-pop)
 
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -348,7 +354,12 @@
 (add-hook 'lisp-mode-hook             #'enable-paredit-mode) ;isso é para CL
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode) ;ativado via M-x
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-(add-hook 'slime-repl-mode-hook 'enable-paredit-mode) ;ativar o paredit no slime    
+(add-hook 'slime-repl-mode-hook 'enable-paredit-mode) ;ativar o paredit no slime
+(add-hook 'clojure-mode-hook #'enable-paredit-mode)
+(add-hook 'clojurescript-mode-hook #'enable-paredit)
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
+(add-hook 'cider-mode-hook #'paredit-mode)
+(add-hook 'clojure-mode-hook #'paredit-mode)
 
 ;; Paredit Keybinding configuration
 (eval-after-load 'paredit

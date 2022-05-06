@@ -333,7 +333,12 @@
 ;; Trying to install browse-kill-ring
 (use-package browse-kill-ring
   :ensure t)
-(global-set-key (kbd "C-x C-y") 'browse-kill-ring)
+
+;; Trying to install browse-kill-ring
+;; There is no need, =counsel-yank-pop= solves everything!
+;; (use-package browse-kill-ring
+;;   :ensure t)
+(global-set-key (kbd "C-y") 'counsel-yank-pop)
 
 ;; Paredit Hooks 
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)

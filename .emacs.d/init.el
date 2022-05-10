@@ -273,7 +273,7 @@
   (ivy-prescient-mode 1))
 
 ;; Function to create an org-clock command to sum an especific region
-(defun org-clock-sum-current-region (beg end)
+(defun pmd/org-clock-sum-current-region (beg end)
   "Sum the total amount of time in the marked region."
   (interactive "r")
   (let ((s (buffer-substring-no-properties beg end)))
@@ -284,7 +284,7 @@
       (message (format "%d" org-clock-file-total-minutes)))))
 
 ;; Snippet of text before starting Nyxt
-(defun nyxt-quickload-gi-gtk ()
+(defun pmd/nyxt-quickload-gi-gtk ()
   "Insert snippet to load Nyxt."
   (interactive)
   (insert "(ql:quickload :nyxt/gi-gtk)")
@@ -292,7 +292,7 @@
 (global-set-key (kbd "C-x C-M-n") 'nyxt-quickload-gi-gtk)
 
 ;; Snippet of text before starting Nyxt
-(defun hermes-quickload ()
+(defun pmd/hermes-quickload ()
   "Insert snippet to load Hermes."
   (interactive)
   (insert "(ql:quickload :hermes)")
@@ -300,7 +300,7 @@
 (global-set-key (kbd "C-x C-M-q") 'hermes-quickload)
 
 ;; Another snippet of text before starting Nyxt
-(defun nyxt-inside-package ()
+(defun pmd/nyxt-inside-package ()
   "Insert snippet to enter the nyxt package."
   (interactive)
   (insert "(in-package :nyxt)")
@@ -308,7 +308,7 @@
 (global-set-key (kbd "C-x C-M-p") 'nyxt-inside-package)
 
 ;; Another snippet of text before starting Hermes
-(defun hermes-inside-package ()
+(defun pmd/hermes-inside-package ()
   "Insert snippet to enter the nyxt package."
   (interactive)
   (insert "(in-package :hermes)")
@@ -316,7 +316,7 @@
 (global-set-key (kbd "C-x C-M-h") 'hermes-inside-package)
 
 ;; Another snippet of text before starting Nyxt
-(defun nyxt-start-package ()
+(defun pmd/nyxt-start-package ()
   "Insert snippet to start Nyxt."
   (interactive)
   (insert "(start)")
@@ -324,7 +324,7 @@
 (global-set-key (kbd "C-x C-M-s") 'nyxt-start-package)
 
 ;; Another snippet of text before starting Nyxt
-(defun slime-repl-back-CL-USER-package ()
+(defun pmd/slime-repl-back-CL-USER-package ()
   "Insert snippet to get back to the CL-USER package."
   (interactive)
   (insert "(cl:in-package :cl-user)")
@@ -434,9 +434,9 @@
   "Alaways center the cursor in the middle of the screen."
   :lighter "..."
   (cond (centered-point-mode (add-hook 'post-command-hook 'line-change))
-	(t (remove-hook 'post-command-hook 'line-change))))
+	(t (remove-hook 'post-command-hook 'pmd/line-change))))
 
-(defun line-change ()
+(defun pmd/line-change ()
   (when (eq (get-buffer-window)
             (selected-window))
     (recenter)))

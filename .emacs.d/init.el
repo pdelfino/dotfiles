@@ -230,13 +230,6 @@
   :config
   (setq org-ellipsis " ▾"));; instead of having `...' there is `▾'.
 
-;; customize *** in org-mode
-(use-package org-bullets
-  :after org
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-
 ;; change the size of font size
 ;; Set faces for heading levels
 (dolist (face '((org-level-1 . 1.2)
@@ -248,6 +241,21 @@
                 (org-level-7 . 1.1)
                 (org-level-8 . 1.1)))
   (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
+
+;; customize *** in org-mode
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+(defun pmd/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :hook (org-mode . pmd/org-mode-visual-fill))
 
 ;; Inserting wakatime in emacs
 (global-wakatime-mode)

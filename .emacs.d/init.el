@@ -249,11 +249,14 @@
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
+;; Auxiliary function to make visual-fill-column work
 (defun pmd/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
+;; Package to put text from org-files right in the middle of the
+;; screen.
 (use-package visual-fill-column
   :hook (org-mode . pmd/org-mode-visual-fill))
 
@@ -433,7 +436,7 @@
 (define-minor-mode centered-point-mode
   "Alaways center the cursor in the middle of the screen."
   :lighter "..."
-  (cond (centered-point-mode (add-hook 'post-command-hook 'line-change))
+  (cond (centered-point-mode (add-hook 'post-command-hook 'pmd/line-change))
 	(t (remove-hook 'post-command-hook 'pmd/line-change))))
 
 (defun pmd/line-change ()

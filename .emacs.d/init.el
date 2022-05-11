@@ -292,7 +292,7 @@
   (interactive)
   (insert "(ql:quickload :nyxt/gi-gtk)")
   (backward-word 2))
-(global-set-key (kbd "C-x C-M-n") 'nyxt-quickload-gi-gtk)
+(global-set-key (kbd "C-x C-M-n") 'pmd/nyxt-quickload-gi-gtk)
 
 ;; Snippet of text before starting Nyxt
 (defun pmd/hermes-quickload ()
@@ -300,7 +300,7 @@
   (interactive)
   (insert "(ql:quickload :hermes)")
   (backward-word 2))
-(global-set-key (kbd "C-x C-M-q") 'hermes-quickload)
+(global-set-key (kbd "C-x C-M-q") 'pmd/hermes-quickload)
 
 ;; Another snippet of text before starting Nyxt
 (defun pmd/nyxt-inside-package ()
@@ -308,7 +308,7 @@
   (interactive)
   (insert "(in-package :nyxt)")
   (backward-word 2))
-(global-set-key (kbd "C-x C-M-p") 'nyxt-inside-package)
+(global-set-key (kbd "C-x C-M-p") 'pmd/nyxt-inside-package)
 
 ;; Another snippet of text before starting Hermes
 (defun pmd/hermes-inside-package ()
@@ -316,7 +316,7 @@
   (interactive)
   (insert "(in-package :hermes)")
   (backward-word 2))
-(global-set-key (kbd "C-x C-M-h") 'hermes-inside-package)
+(global-set-key (kbd "C-x C-M-h") 'pmd/hermes-inside-package)
 
 ;; Another snippet of text before starting Nyxt
 (defun pmd/nyxt-start-package ()
@@ -324,7 +324,7 @@
   (interactive)
   (insert "(start)")
   (backward-word 2))
-(global-set-key (kbd "C-x C-M-s") 'nyxt-start-package)
+(global-set-key (kbd "C-x C-M-s") 'pmd/nyxt-start-package)
 
 ;; Another snippet of text before starting Nyxt
 (defun pmd/slime-repl-back-CL-USER-package ()

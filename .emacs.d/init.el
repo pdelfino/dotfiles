@@ -447,7 +447,7 @@
 (global-set-key (kbd "C-x C-M-r") 'revert-buffer)
 
 ;;;; Keybinding change Dabrev Expansion
-(global-set-key (kbd "M-]") 'dabbrev-expand)
+;;(global-set-key (kbd "M-]") 'dabbrev-expand)
 
 ;; Kebinding to move org row up
 (global-set-key (kbd "C-x M-p") 'org-table-move-row-up)

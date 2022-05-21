@@ -150,7 +150,7 @@
 ;; with emacs runnig.
 (use-package counsel
   :bind (("M-x" . counsel-M-x) ;; `M-o' in a list provides extra actions!
-         ("C-x b" . counsel-ibuffer)
+         ("C-x C-b" . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
@@ -172,7 +172,7 @@
 (use-package general)
 
 (general-define-key
-  "C-x C-b" 'counsel-switch-buffer)
+  "C-x b" 'counsel-switch-buffer)
 
 ;; Insert hydra, not sure if it is going to be helpful...  Seems to be
 ;; useful with commands that are executed multiple times in a row

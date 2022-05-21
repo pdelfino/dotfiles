@@ -12,3 +12,28 @@ xkill
 (division 6 3)
 nautilus
 (* 14.5 110 5)
+xkill
+lein repl
+java -version
+cd ..
+cd etc/nixos/
+ls -l
+emacsclient configuration.nix 
+sudo emacsclient configuration.nix 
+sudo emacs configuration.nix 
+sudo nixos-rebuild switch
+dropbox
+cd ..
+cd etc/
+cd nixos/
+ls -l
+emacs configuration.nix 
+cd projects/
+ls -l
+git clone git@github.com:pdelfino/enclave-technical-writing.git
+cd 
+cd Downloads/
+ls -l
+cd 
+cd /etc/nixos/
+emacs configuration.nix 

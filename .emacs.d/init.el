@@ -136,7 +136,7 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 0))
+  (setq which-key-idle-delay 5))
 
 ;; An addition to the ivy interface showing me the details of all the
 ;; commands.  `M-x' is way more powerful now, showing the

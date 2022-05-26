@@ -21,7 +21,6 @@ ls -l
 emacsclient configuration.nix 
 sudo emacsclient configuration.nix 
 sudo emacs configuration.nix 
-sudo nixos-rebuild switch
 dropbox
 cd ..
 cd etc/
@@ -37,3 +36,77 @@ ls -l
 cd 
 cd /etc/nixos/
 emacs configuration.nix 
+xkill
+cd 
+cd ..
+cd /etc/
+cd nixos/
+emacs configuration.nix 
+sudo emacs configuration.nix 
+nodej
+nodejs
+nodejs 
+cd projects/common-lisp-learning/partner-slate/
+ls -l
+node exercise.
+node exercise.js
+ls -l
+node exercise.js
+cd ..
+cd ..
+ls -l
+git clone git@github.com:PartnerSlate/mars-air-seating-js.git
+./bin/seating-assignment
+ls -l
+cd mars-air-seating-js/
+ls -l
+./bin/seating-assignment
+(/ 115 4.5)
+cd 
+cd ..
+cd etc/nixos/
+ls -l
+sudo emacs configuration.nix 
+sudo nixos-rebuild switch
+node
+(/ 35 12)
+(/ 35.0 12.0)
+(/ 50.0 12.0)
+(/ 30.0 12.0)
+(- 4.1666 2.91666)
+(* 3 (- 4.1666 2.91666))
+(/ 40.0 12.0)
+(/ 43.0 12.0)
+(/ 35.0 12.0)
+(/ 50.0 12.0)
+(defvar job-ad-payment-per-month 4166)
+job-ad-payment-per-month
+(- job-ad-payment-per-month 100)
+(defvar trial-period-payment-per-month 3300)
+trial-period-payment-per-month
+(* 3 (- job-ad-payment-per-month trial-period-payment-per-month 3300))
+(- job-ad-payment-per-month trial-period-payment-per-month 3300)
+(- job-ad-payment-per-month trial-period-payment-per-month)
+(*3 (- job-ad-payment-per-month trial-period-payment-per-month))
+(* 3 (- job-ad-payment-per-month trial-period-payment-per-month))
+(/ (* 4166 20) 22)
+(- 4166 (/ (* 4166 20) 22))
+(/ 3.120 2.400)
+(/ 3120 2400)
+(/ 3120.0 2400.0)
+(/ 320000.0 2400.0)
+(/ 320000.0 1400.0)
+(/ 40000.0 12)
+(/ (* 0.8 50) 12)
+(/ (* 0.8 50000) 12)
+(/  50000 12)
+cd projects/mars-air-seating-js/src/
+node cli.js 
+1
+node 
+node cli.js 
+node
+node cli.js 
+node seatAssigner.js 
+node cli.js 
+git grep "define-internal-page-command-global"

@@ -407,6 +407,10 @@
 (use-package cider
   :ensure t)
 
+;; Trying to properly export org-mode to markdown
+(use-package ox-gfm
+  :ensure t)
+
 ;; Trying to install browse-kill-ring
 ;; There is no need, =counsel-yank-pop= solves everything!
 ;; =counsel-yank-pop= enhances built-in =yank-pop=.

@@ -317,6 +317,11 @@
 ;; Create a keybinding using Super-e to invoke eshell
 (global-set-key [(super return)] 'eshell)
 
+
+;; Trying to install org-make-toc
+(use-package org-make-toc
+  :ensure t)
+
 ;; Inserting wakatime in emacs
 (global-wakatime-mode)
 (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")

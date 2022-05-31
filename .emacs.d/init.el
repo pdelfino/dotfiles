@@ -1,4 +1,4 @@
-;; The 6 Emacs Settings Every User Should Consider 
+;; The 6 Emacs Settings Every User Should Consider
 ;; Remember recently edited file
 (recentf-mode 1)
 
@@ -30,7 +30,7 @@
 (setq inhibit-startup-screen t)
 
 ;; Disable the visible scrollbar.
-(scroll-bar-mode -1) 
+(scroll-bar-mode -1)
 
 ;; Disable the toolbar.
 (tool-bar-mode -1)
@@ -108,7 +108,7 @@
   :diminish ;; keeps ivy out of the mode line.
   :bind (("C-s" . swiper) ;; this is a cool way to do key binding.
          :map ivy-minibuffer-map
-         ;("TAB" . ivy-alt-done)    
+         ;("TAB" . ivy-alt-done)
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
@@ -304,19 +304,6 @@
   ;;(setq vterm-shell "zsh")                       ;; Set this to customize the shell to launch
   (setq vterm-max-scrollback 10000))
 
-;; trying to improve eshell with xterm-color
-;; (use-package xterm-color)
-
-;; (require 'eshell) ; or use with-eval-after-load
-
-;; (add-hook 'eshell-before-prompt-hook
-;;           (lambda ()
-;;             (setq xterm-color-preserve-properties t)))
-
-;; (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
-;; (setq eshell-output-filter-functions (remove 'eshell-handle-ansi-color eshell-output-filter-functions))
-;; (setenv "TERM" "xterm-256color")
-
 (defun pmd/configure-eshell ()
   ;; Save command history when commands are entered
   (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
@@ -350,13 +337,13 @@
 
 ;; Update my Emacs' packages every week
 (use-package auto-package-update
-  :custom
-  (auto-package-update-interval 7)
-  (auto-package-update-prompt-before-update t)
-  (auto-package-update-hide-results t)
-  :config
-  (auto-package-update-maybe))
-(auto-package-update-at-time "09:00")
+    :custom
+    (auto-package-update-interval 7)
+    (auto-package-update-prompt-before-update t)
+    (auto-package-update-hide-results t)
+    :config
+    (auto-package-update-maybe)
+    (auto-package-update-at-time "09:00"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; My tweaks
@@ -462,7 +449,7 @@
 ;;   :ensure t)
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
 
-;; Paredit Hooks 
+;; Paredit Hooks
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
@@ -503,7 +490,7 @@
 ;; Make paste-and-replace work
 (delete-selection-mode 1)
 
-;; Show parens  
+;; Show parens
 (show-paren-mode t)
 
 ;; Show parens immediatly
@@ -515,7 +502,7 @@
 ;; Launch emacs as full screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; Emacs minor mode to wrap region with tag or punctuations 
+;; Emacs minor mode to wrap region with tag or punctuations
 (wrap-region-mode t)
 (wrap-region-add-wrapper "*" "*")
 (wrap-region-add-wrapper "/" "/")

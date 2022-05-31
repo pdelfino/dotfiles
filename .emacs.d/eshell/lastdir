@@ -1,5 +1,4 @@
 /home/pedro/projects/nyxt
-/home/pedro/projects/job-employee-nyxt/invoices-and-nota-fiscal
 ~/projects/clojure-learning/derek-banas
 /home/pedro/projects/clojure-learning/derek-banas
 /etc/nixos
@@ -22,11 +21,13 @@
 /home/pedro/quicklisp/local-projects/hermes
 /home/pedro/projects/nyxt
 /home/pedro/projects/my-blog
-/home/pedro
 /etc
 /etc/nixos
 ~
-/home
-/
 /bin
 /home/pedro/quicklisp/local-projects/hermes
+/home/pedro/projects/job-employee-nyxt/invoices-and-nota-fiscal
+/home/pedro
+/home
+/
+/etc/nixos

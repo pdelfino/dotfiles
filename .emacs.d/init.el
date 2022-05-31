@@ -1,3 +1,30 @@
+;; The 6 Emacs Settings Every User Should Consider 
+;; Remember recently edited file
+(recentf-mode 1)
+
+;; Remember mini-buffer prompt-history
+(savehist-mode 1)
+
+;; Remember and restore the last cursor location in an opened file
+(save-place-mode 1)
+
+;; Avoid custom variables from Emacs, since this is a handcrafted file
+;; Move them to a different file
+(setq custom-file (locate-user-emacs-file "/home/pedro/.dotfiles/.emacs.d/custom-vars.el"))
+(load custom-file 'noerror 'nomessage)
+
+;; Prevent UI dialogs for prompts
+(setq use-dialog-box nil)
+
+;; Automatically revert buffers
+(global-auto-revert-mode 1)
+
+;; Revert Dired and other buffers
+(setq global-auto-revert-non-file-buffers t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Emacs from Scratch series
 ;; Clean-up the user interface.
 ;; No start-up screen with Emacs logo.
 (setq inhibit-startup-screen t)
@@ -317,12 +344,11 @@
 ;; Create a keybinding using Super-e to invoke eshell
 (global-set-key [(super return)] 'eshell)
 
-
 ;; Trying to install org-make-toc
 (use-package org-make-toc
   :ensure t)
 
-
+;; Update my Emacs' packages every week
 (use-package auto-package-update
   :custom
   (auto-package-update-interval 7)
@@ -331,6 +357,9 @@
   :config
   (auto-package-update-maybe))
 (auto-package-update-at-time "09:00")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; My tweaks
 
 ;; Inserting wakatime in emacs
 (global-wakatime-mode)

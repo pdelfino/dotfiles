@@ -2,3 +2,6 @@ transient
 projectile-bookmarks.eld
 .emacs.d/projectile-bookmarks.eld
 .emacs.d/transient/history.el
+/.emacs.d/eshell/
+/.emacs.d/history
+/.emacs.d/recentf

@@ -352,6 +352,9 @@
 ;; Thus, the command `forward-sentence' will work!
 (setq sentence-end-double-space nil)
 
+;; Make cursor stable (not on-off). Better for anxiety.
+(setq blink-cursor-mode nil)
+
 ;; Inserting wakatime in emacs
 (global-wakatime-mode)
 (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")

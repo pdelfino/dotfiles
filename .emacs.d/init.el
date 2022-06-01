@@ -348,6 +348,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; My tweaks
 
+;; Make Emacs aware that I am using single space sentences
+;; Thus, the command `forward-sentence' will work!
+(setq sentence-end-double-space nil)
+
 ;; Inserting wakatime in emacs
 (global-wakatime-mode)
 (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")

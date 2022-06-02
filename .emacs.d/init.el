@@ -359,6 +359,9 @@
 ;; between ediff and the tiling window manager
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
+;; Bring things copied outside of Emacs to the Emacs clipboard ring
+(setq save-interprogram-paste-before-kill t)
+
 ;; Inserting wakatime in emacs
 (global-wakatime-mode)
 (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")

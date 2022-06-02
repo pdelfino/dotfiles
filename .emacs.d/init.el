@@ -355,6 +355,10 @@
 ;; Make cursor stable (not on-off). Better for anxiety.
 (setq blink-cursor-mode nil)
 
+;; If I do not add the line bellow, I am going to face a problem
+;; between ediff and the tiling window manager
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
 ;; Inserting wakatime in emacs
 (global-wakatime-mode)
 (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")

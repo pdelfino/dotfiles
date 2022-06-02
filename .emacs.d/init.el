@@ -1,4 +1,4 @@
-;; The 6 Emacs Settings Every User Should Consider
+;; The new Emacs from Scratch series
 ;; Remember recently edited file
 (recentf-mode 1)
 

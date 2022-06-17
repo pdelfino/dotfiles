@@ -55,6 +55,13 @@
 
 ;; Fontsize.
 ;;(set-face-attribute 'default nil :font "Fira Code Retina" :height 200)
+;;(set-face-attribute 'default nil :font "Fira Code Retina")
+
+;; Set the fixed pitch face
+;;(set-face-attribute 'fixed-pitch nil :font "Fira Code Retina" )
+
+;; Set the variable pitch face
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :weight 'regular)
 
 ;; Default theme initially used by System Crafters.
 ;; (load-theme 'wombat)

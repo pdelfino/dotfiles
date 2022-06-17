@@ -490,10 +490,10 @@
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 (add-hook 'slime-repl-mode-hook 'enable-paredit-mode) ;ativar o paredit no slime
 (add-hook 'clojure-mode-hook #'enable-paredit-mode)
-(add-hook 'clojurescript-mode-hook #'enable-paredit)
-(add-hook 'cider-repl-mode-hook #'paredit-mode)
-(add-hook 'cider-mode-hook #'paredit-mode)
-(add-hook 'clojure-mode-hook #'paredit-mode)
+(add-hook 'clojurescript-mode-hook #'enable-paredit-mode)
+(add-hook 'cider-repl-mode-hook #'enable-paredit-mode)
+(add-hook 'cider-mode-hook #'enable-paredit-mode)
+(add-hook 'clojure-mode-hook #'enable-paredit-mode)
 
 ;; Paredit Keybinding configuration
 (eval-after-load 'paredit

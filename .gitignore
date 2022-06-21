@@ -7,3 +7,4 @@ projectile-bookmarks.eld
 /.emacs.d/recentf
 /.emacs.d/places
 elpa/
+.last-package-update-day

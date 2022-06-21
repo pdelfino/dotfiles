@@ -478,6 +478,10 @@
 (use-package cider
   :ensure t)
 
+;; Normally TAB only indents, but now it will also do completion if
+;; the code is already properly indented.
+(setq tab-always-indent 'complete)
+
 ;; Trying to properly export org-mode to markdown
 (use-package ox-gfm
   :ensure t)

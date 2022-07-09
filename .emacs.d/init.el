@@ -554,7 +554,7 @@
 
 
 ;; Increase the font size
-(set-face-attribute 'default nil :height 100)
+(set-face-attribute 'default nil :height 120)
 
 ;; Enabling IDO
 ;; (setq ido-enable-flex-matching t)

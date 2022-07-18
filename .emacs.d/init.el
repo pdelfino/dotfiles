@@ -143,7 +143,6 @@
 ;; Crafters thinks the height is too high, it is possible to customize
 ;; it tweaking the variable value using `:custom'.
 (use-package doom-modeline
-  :ensure t;; there is no need for `:ensure' due to use-package-always-ensure
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
@@ -347,7 +346,9 @@
 (use-package org-make-toc
   :ensure t)
 
-;; Update my Emacs' packages every week
+;; Update my Emacs' packages every week This things screw me up once.
+;; But after re-compiling all packages with (byte-recompile-directory
+;; package-user-dir nil 'force) fixed the problem.
 (use-package auto-package-update
     :custom
     (auto-package-update-interval 7)

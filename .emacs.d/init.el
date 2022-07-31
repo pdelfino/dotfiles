@@ -349,14 +349,14 @@
 ;; Update my Emacs' packages every week This things screw me up once.
 ;; But after re-compiling all packages with (byte-recompile-directory
 ;; package-user-dir nil 'force) fixed the problem.
-(use-package auto-package-update
-    :custom
-    (auto-package-update-interval 7)
-    (auto-package-update-prompt-before-update t)
-    (auto-package-update-hide-results t)
-    :config
-    (auto-package-update-maybe)
-    (auto-package-update-at-time "09:00"))
+;; (use-package auto-package-update
+;;     :custom
+;;     (auto-package-update-interval 7)
+;;     (auto-package-update-prompt-before-update t)
+;;     (auto-package-update-hide-results t)
+;;     :config
+;;     (auto-package-update-maybe)
+;;     (auto-package-update-at-time "09:00"))
 
 
 ;; The default is 800 kilobytes.  Measured in bytes.

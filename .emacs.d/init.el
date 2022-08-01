@@ -44,8 +44,11 @@
 ;; Disable menu-bar-mode.
 (menu-bar-mode -1)
 
-;; Set visual bell (like when you reach the end of the buffer).
-(setq visible-bell t) ; not sure if the sound would be actually better.
+;; Visible sucks on MacOS Emacs, so remove it. In Linux it is fine.
+(setq visible-bell nil) 
+
+;; Also remove the alert sound
+(setq ring-bell-function 'ignore)
 
 ;; Set the windon fringe size.
 (set-fringe-mode 10)
@@ -575,7 +578,7 @@
 (use-package wrap-region
   :ensure t
   :config
-    (wrap-region-mode t)
+    (wrap-region-mode 1)
     (wrap-region-add-wrapper "*" "*")
     (wrap-region-add-wrapper "/" "/")
     (wrap-region-add-wrapper "=" "="))

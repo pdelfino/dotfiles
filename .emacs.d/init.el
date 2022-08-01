@@ -61,7 +61,7 @@
 ;;(set-face-attribute 'fixed-pitch nil :font "Fira Code Retina" )
 
 ;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "Cantarell" :weight 'regular)
+;; (set-face-attribute 'variable-pitch nil :font "Cantarell" :weight 'regular)
 
 ;; Default theme initially used by System Crafters.
 ;; (load-theme 'wombat)
@@ -101,7 +101,7 @@
 
 ;; Display line numbers.
 ;; This is better than old `linum-mode'.
-;;(global-display-line-numbers-mode t) ;;Mode line gives a lot of info, no need for this anymore.
+(global-display-line-numbers-mode t) ;;Mode line gives a lot of info, no need for this anymore.
 
 ;; Disable line numbers for some modes.
 ;; A hook is a variable that holds a list of functions. This
@@ -278,7 +278,8 @@
                 (org-level-6 . 1.1)
                 (org-level-7 . 1.1)
                 (org-level-8 . 1.1)))
-  (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
+  ;; (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face))
+  )
 
 ;; customize *** in org-mode
 (use-package org-bullets
@@ -346,6 +347,7 @@
 (use-package org-make-toc
   :ensure t)
 
+
 ;; Update my Emacs' packages every week This things screw me up once.
 ;; But after re-compiling all packages with (byte-recompile-directory
 ;; package-user-dir nil 'force) fixed the problem.
@@ -372,6 +374,7 @@
 
 (add-hook 'emacs-startup-hook #'pmd/display-startup-time)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; My tweaks
 
@@ -390,8 +393,11 @@
 (setq save-interprogram-paste-before-kill t)
 
 ;; Inserting wakatime in emacs
-(global-wakatime-mode)
-(setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
+;; (use-package wakatime-mode
+;;   :init
+;;   (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
+;;   :config
+;;   (global-wakatime-mode 1))
 
 ;; Testing this to see if it helps with my problems when opening slime buffer
 ;; (use-package golden-ratio
@@ -403,6 +409,17 @@
 (use-package ivy-prescient
   :init
   (ivy-prescient-mode 1))
+
+;; Function to create an org-clock command to sum an especific region
+(defun pmd/org-clock-sum-current-region (beg end)
+  "Sum the total amount of time in the marked region."
+  (interactive "r")
+  (let ((s (buffer-substring-no-properties beg end)))
+    (with-temp-buffer
+      (insert "* foo\n")
+      (insert s)
+      (org-clock-sum)
+      (message (format "%d" org-clock-file-total-minutes)))))
 
 ;; Function to create an org-clock command to sum an especific region
 (defun pmd/org-clock-sum-current-region (beg end)
@@ -494,30 +511,37 @@
 ;;   :ensure t)
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
 
-;; Paredit Hooks
-(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             #'enable-paredit-mode) ;isso é para CL
-(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode) ;ativado via M-x
-(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-(add-hook 'slime-repl-mode-hook 'enable-paredit-mode) ;ativar o paredit no slime
-(add-hook 'clojure-mode-hook #'enable-paredit-mode)
-(add-hook 'clojurescript-mode-hook #'enable-paredit-mode)
-(add-hook 'cider-repl-mode-hook #'enable-paredit-mode)
-(add-hook 'cider-mode-hook #'enable-paredit-mode)
-(add-hook 'clojure-mode-hook #'enable-paredit-mode)
 
-;; Paredit Keybinding configuration
-(eval-after-load 'paredit
-  '(progn
-     (define-key paredit-mode-map (kbd "C->") 'paredit-forward-slurp-sexp)
-     (define-key paredit-mode-map (kbd "C-<") 'paredit-forward-barf-sexp)
-     (define-key paredit-mode-map (kbd "C-M-<") 'paredit-backward-slurp-sexp)
-     (define-key paredit-mode-map (kbd "C-M->") 'paredit-backward-barf-sexp)
-     (define-key paredit-mode-map (kbd "<C-right>") nil)
-     (define-key paredit-mode-map (kbd "<C-left>") nil)))
+;; Paredit
+(use-package paredit
+  :ensure t
+  :hook ((emacs-lisp-mode . enable-paredit-mode)
+         (eval-expression-minibuffer-setup . enable-paredit-mode)
+         (ielm-mode . enable-paredit-mode)
+         (lisp-mode . enable-paredit-mode) 
+         (lisp-interaction-mode . enable-paredit-mode)
+         (scheme-mode . enable-paredit-mode)
+         (slime-repl-mode . enable-paredit-mode) 
+         (clojure-mode . enable-paredit-mode)
+         (clojurescript-mode . enable-paredit-mode)
+         (cider-repl-mode . enable-paredit-mode)
+         (cider-mode . enable-paredit-mode)
+         (clojure-mode . enable-paredit-mode))
+  :config
+  (show-paren-mode t)
+    
+  :bind (("C->" . paredit-forward-slurp-sexp)
+         ("C-<" . paredit-forward-barf-sexp)
+         ("C-M-<" . paredit-backward-slurp-sexp)
+         ("C-M->" . paredit-backward-barf-sexp)
+         ("<C-right>" .  nil)
+         ("<C-left>" .  nil)
+         ("M-[" . paredit-wrap-square)
+         ("M-{" . paredit-wrap-curly))
+    
+  ;; :after (autoload 'enable-paredit-mode "paredit" "Turn on
+  ;; pseudo-structural editing of Lisp code." t)
+  )
 
 ;; Keybindings
 ;;;; Jump to bookmarks
@@ -548,11 +572,13 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Emacs minor mode to wrap region with tag or punctuations
-(wrap-region-mode t)
-(wrap-region-add-wrapper "*" "*")
-(wrap-region-add-wrapper "/" "/")
-(wrap-region-add-wrapper "=" "=")
-
+(use-package wrap-region
+  :ensure t
+  :config
+    (wrap-region-mode t)
+    (wrap-region-add-wrapper "*" "*")
+    (wrap-region-add-wrapper "/" "/")
+    (wrap-region-add-wrapper "=" "="))
 
 ;; Increase the font size
 (set-face-attribute 'default nil :height 120)
@@ -570,12 +596,14 @@
 (global-unset-key (kbd "<left>") )
 (global-unset-key (kbd "<right>") )
 (global-unset-key (kbd "<up>") )
-(global-unset-key (kbd "<down>") )
+(global-unset-key (kbd "<down>"))
 
-(slime-setup '(slime-fancy slime-asdf slime-indentation slime-sbcl-exts slime-scratch))
-
-(setq slime-lisp-implementations
-      '((sbcl ("/home/pedro/projects/nyxt.sh" ""))))
+(use-package slime
+  :ensure t
+  :config
+    (setq slime-lisp-implementations
+          '((sbcl ("/home/pedro/projects/nyxt.sh" ""))))
+    (slime-setup '(slime-fancy slime-asdf slime-indentation slime-sbcl-exts slime-scratch)))
 
 (define-minor-mode centered-point-mode
   "Alaways center the cursor in the middle of the screen."
@@ -590,140 +618,3 @@
 
 (provide 'centeredpoint)
 (centered-point-mode t) ;;enable it globally
-
-;; System Crafters does not use `custom-set-variables' or `custom-set-faces'
-
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(column-number-mode t)
-;;  '(custom-safe-themes
-;;    '("7eea50883f10e5c6ad6f81e153c640b3a288cd8dc1d26e4696f7d40f754cc703" default))
-;;  '(global-command-log-mode t)
-;;  '(package-selected-packages
-;;    '(helpful counsel all-the-icons-ivy-rich ivy-rich dracula-theme which-key rainbow-delimiters doom-modeline command-log-mode slime use-package))
-;;  '(tooltip-mode nil))
-
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default))
- '(package-selected-packages
-   '(restclient keycast wakatime-mode ivy-prescient prescient wrap-region transpose-frame magit paredit general which-key use-package slime rainbow-delimiters popup helpful helm-core dracula-theme doom-themes doom-modeline counsel command-log-mode all-the-icons-ivy-rich))
- '(safe-local-variable-values
-   '((eval cl-flet
-           ((enhance-imenu-lisp
-             (&rest keywords)
-             (dolist
-                 (keyword keywords)
-               (let
-                   ((prefix
-                     (when
-                         (listp keyword)
-                       (cl-second keyword)))
-                    (keyword
-                     (if
-                         (listp keyword)
-                         (cl-first keyword)
-                       keyword)))
-                 (add-to-list 'lisp-imenu-generic-expression
-                              (list
-                               (purecopy
-                                (concat
-                                 (capitalize keyword)
-                                 (if
-                                     (string=
-                                      (substring-no-properties keyword -1)
-                                      "s")
-                                     "es" "s")))
-                               (purecopy
-                                (concat "^\\s-*("
-                                        (regexp-opt
-                                         (list
-                                          (if prefix
-                                              (concat prefix "-" keyword)
-                                            keyword)
-                                          (concat prefix "-" keyword))
-                                         t)
-                                        "\\s-+\\(" lisp-mode-symbol-regexp "\\)"))
-                               2))))))
-           (enhance-imenu-lisp
-            '("bookmarklet-command" "define")
-            '("class" "define")
-            '("command" "define")
-            '("ffi-method" "define")
-            '("ffi-generic" "define")
-            '("function" "define")
-            '("internal-page-command" "define")
-            '("internal-page-command-global" "define")
-            '("mode" "define")
-            '("parenscript" "define")
-            "defpsmacro"))
-     (eval cl-flet
-           ((enhance-imenu-lisp
-             (&rest keywords)
-             (dolist
-                 (keyword keywords)
-               (add-to-list 'lisp-imenu-generic-expression
-                            (list
-                             (purecopy
-                              (concat
-                               (capitalize keyword)
-                               (if
-                                   (string=
-                                    (substring-no-properties keyword -1)
-                                    "s")
-                                   "es" "s")))
-                             (purecopy
-                              (concat "^\\s-*("
-                                      (regexp-opt
-                                       (list
-                                        (concat "define-" keyword))
-                                       t)
-                                      "\\s-+\\(" lisp-mode-symbol-regexp "\\)"))
-                             2)))))
-           (enhance-imenu-lisp "bookmarklet-command" "class" "command" "ffi-method" "function" "internal-page-command" "internal-page-command-global" "mode" "parenscript" "user-class"))
-     (eval cl-flet
-           ((enhance-imenu-lisp
-             (&rest keywords)
-             (dolist
-                 (keyword keywords)
-               (add-to-list 'lisp-imenu-generic-expression
-                            (list
-                             (purecopy
-                              (concat
-                               (capitalize keyword)
-                               (if
-                                   (string=
-                                    (substring-no-properties keyword -1)
-                                    "s")
-                                   "es" "s")))
-                             (purecopy
-                              (concat "^\\s-*("
-                                      (regexp-opt
-                                       (list
-                                        (concat "define-" keyword))
-                                       t)
-                                      "\\s-+\\(" lisp-mode-symbol-regexp "\\)"))
-                             2)))))
-           (enhance-imenu-lisp "bookmarklet-command" "class" "command" "ffi-method" "function" "mode" "parenscript" "user-class")))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(put 'downcase-region 'disabled nil)
-; insert comment test
-(put 'upcase-region 'disabled nil)

@@ -64,7 +64,7 @@
 ;;(set-face-attribute 'fixed-pitch nil :font "Fira Code Retina" )
 
 ;; Set the variable pitch face
-;; (set-face-attribute 'variable-pitch nil :font "Cantarell" :weight 'regular)
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :weight 'regular)
 
 ;; Default theme initially used by System Crafters.
 ;; (load-theme 'wombat)
@@ -281,8 +281,7 @@
                 (org-level-6 . 1.1)
                 (org-level-7 . 1.1)
                 (org-level-8 . 1.1)))
-  ;; (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face))
-  )
+  (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
 
 ;; customize *** in org-mode
 (use-package org-bullets
@@ -578,13 +577,13 @@
 (use-package wrap-region
   :ensure t
   :config
-    (wrap-region-mode 1)
+    (wrap-region-global-mode 1)
     (wrap-region-add-wrapper "*" "*")
     (wrap-region-add-wrapper "/" "/")
     (wrap-region-add-wrapper "=" "="))
 
 ;; Increase the font size
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 160)
 
 ;; Enabling IDO
 ;; (setq ido-enable-flex-matching t)

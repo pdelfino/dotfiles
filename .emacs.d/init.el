@@ -442,13 +442,13 @@
   (backward-word 2))
 (global-set-key (kbd "C-x C-M-n") 'pmd/nyxt-quickload-gi-gtk)
 
-;; Snippet of text before starting Nyxt
-(defun pmd/hermes-quickload ()
-  "Insert snippet to load Hermes."
-  (interactive)
-  (insert "(ql:quickload :hermes)")
-  (backward-word 2))
-(global-set-key (kbd "C-x C-M-q") 'pmd/hermes-quickload)
+;; Snippet of text to load Hermes
+;; (defun pmd/hermes-quickload ()
+;;   "Insert snippet to load Hermes."
+;;   (interactive)
+;;   (insert "(ql:quickload :hermes)")
+;;   (backward-word 2))
+;; (global-set-key (kbd "C-x C-M-q") 'pmd/hermes-quickload)
 
 ;; Another snippet of text before starting Nyxt
 (defun pmd/nyxt-inside-package ()
@@ -620,3 +620,12 @@
 
 (provide 'centeredpoint)
 (centered-point-mode t) ;;enable it globally
+
+;; Trying to solve some character due to Brazilian Portuguese input
+;; and American Keyboard. Especially the Slash character: "/"
+(defun pmd/insert-slash ()
+  "Insert snippet to start Nyxt."
+  (interactive)
+  (insert "/")
+  (backward-word 1))
+(global-set-key (kbd "C-x C-M-q") 'pmd/insert-slash)

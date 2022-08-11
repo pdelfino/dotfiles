@@ -230,7 +230,7 @@
   ("j" enlarge-window "enlarge")
   ("k" shrink-window "out")
   ("f" nil "finished" :exit t))
-(global-set-key (kbd "C-x C-M-w") 'window-scale/body)
+;; (global-set-key (kbd "C-x C-M-w") 'window-scale/body)
 
 ;; Projectile helps to navigate on different projects, it is a project
 ;; interaction library.
@@ -442,12 +442,12 @@
   (backward-word 2))
 (global-set-key (kbd "C-x C-M-n") 'pmd/nyxt-quickload-gi-gtk)
 
-;; Snippet of text to load Hermes
-;; (defun pmd/hermes-quickload ()
-;;   "Insert snippet to load Hermes."
-;;   (interactive)
-;;   (insert "(ql:quickload :hermes)")
-;;   (backward-word 2))
+;;Snippet of text to load Hermes
+(defun pmd/hermes-quickload ()
+  "Insert snippet to load Hermes."
+  (interactive)
+  (insert "(ql:quickload :hermes)")
+  (backward-word 2))
 ;; (global-set-key (kbd "C-x C-M-q") 'pmd/hermes-quickload)
 
 ;; Another snippet of text before starting Nyxt
@@ -553,7 +553,7 @@
 (global-set-key (kbd "C-x C-M-r") 'revert-buffer)
 
 ;;;; Keybinding change Dabrev Expansion
-;;(global-set-key (kbd "M-]") 'dabbrev-expand)
+(global-set-key (kbd "M-]") 'dabbrev-expand)
 
 ;; Kebinding to move org row up
 (global-set-key (kbd "C-x M-p") 'org-table-move-row-up)
@@ -624,8 +624,13 @@
 ;; Trying to solve some character due to Brazilian Portuguese input
 ;; and American Keyboard. Especially the Slash character: "/"
 (defun pmd/insert-slash ()
-  "Insert snippet to start Nyxt."
+  "Hack because of the problem on macOS/Emacs/Portuguese input/American keyboard."
   (interactive)
-  (insert "/")
-  (backward-word 1))
+  (insert "/"))
 (global-set-key (kbd "C-x C-M-q") 'pmd/insert-slash)
+
+(defun pmd/insert-question-mark ()
+  "Hack because of the problem on macOS/Emacs/Portuguese input/American keyboard."
+  (interactive)
+  (insert "?"))
+(global-set-key (kbd "C-x C-M-w") 'pmd/insert-question-mark)

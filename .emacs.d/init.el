@@ -494,7 +494,7 @@
 (use-package clojure-mode
   :ensure t)
 
-;; Trying to install cider to start a REPL directly in Clojure
+;; Install cider to start a REPL directly in Clojure
 (use-package cider
   :ensure t)
 
@@ -634,3 +634,10 @@
   (interactive)
   (insert "?"))
 (global-set-key (kbd "C-x C-M-w") 'pmd/insert-question-mark)
+
+;; This package brings keybindings similar to org-mode, but to
+;; markdown format!
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))

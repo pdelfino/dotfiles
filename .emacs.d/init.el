@@ -641,3 +641,11 @@
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown"))
+
+(defun pmd/select-and-kill-frame-before-it-is-deleted ()
+  "Add content of frame to the kill ring before frame is deleted.
+This helps with a problem that I faced while using the software
+called Emacs Anywhere."
+  (kill-new (filter-buffer-substring beg end)))
+
+(add-hook 'delete-frame-functions 'pmd/select-and-kill-frame-before-it-is-deleted)

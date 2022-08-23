@@ -647,3 +647,7 @@ called Emacs Anywhere."
 ;; Package to make introduce to Emacs everything on the system clipboard!
 (use-package clipmon
   :ensure t)
+
+;; Exucte `M-x server-start` after Emacs starts so that Emacs Anywhere can work!
+(add-hook 'after-init-hook #'server-start)
+

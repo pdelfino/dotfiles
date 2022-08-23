@@ -345,10 +345,9 @@
 ;; Create a keybinding using Super-e to invoke eshell
 (global-set-key [(super return)] 'eshell)
 
-;; Trying to install org-make-toc
+;; The package adds an automatic Table of Content (TOC) on org files
 (use-package org-make-toc
   :ensure t)
-
 
 ;; Update my Emacs' packages every week This things screw me up once.
 ;; But after re-compiling all packages with (byte-recompile-directory
@@ -481,16 +480,16 @@
   (insert "(cl:in-package :cl-user)")
   (backward-word 2))
 
-;; Trying to install a rest-client
+;; Rest-client using a grammar and plain text for requests
 (use-package restclient
   :ensure t
   :mode (("\\.http\\'" . restclient-mode)))
 
-;; Trying to install org-drill
+;; Org-drill like anki cards inside emacs
 (use-package org-drill
   :ensure t)
 
-;; Trying to install clojure-mode
+;; Clojure-mode to program in Clojure
 (use-package clojure-mode
   :ensure t)
 
@@ -502,17 +501,12 @@
 ;; the code is already properly indented.
 (setq tab-always-indent 'complete)
 
-;; Trying to properly export org-mode to markdown
+;; Package to export org-mode to markdown
 (use-package ox-gfm
   :ensure t)
 
-;; Trying to install browse-kill-ring
-;; There is no need, =counsel-yank-pop= solves everything!
 ;; =counsel-yank-pop= enhances built-in =yank-pop=.
-;; (use-package browse-kill-ring
-;;   :ensure t)
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
-
 
 ;; Paredit
 (use-package paredit

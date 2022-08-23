@@ -643,3 +643,7 @@ called Emacs Anywhere."
   (kill-new (filter-buffer-substring beg end)))
 
 (add-hook 'delete-frame-functions 'pmd/select-and-kill-frame-before-it-is-deleted)
+
+;; Package to make introduce to Emacs everything on the system clipboard!
+(use-package clipmon
+  :ensure t)

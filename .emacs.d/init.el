@@ -648,6 +648,9 @@ called Emacs Anywhere."
 (use-package clipmon
   :ensure t)
 
-;; Exucte `M-x server-start` after Emacs starts so that Emacs Anywhere can work!
+;; Start server so that I can easily launch succesfully the
+;; application called Emacs Anywhere
 (add-hook 'after-init-hook #'server-start)
 
+;; Set variable in an automatic manner
+(customize-set-variable 'cider-shadow-cljs-command "shadow-cljs")

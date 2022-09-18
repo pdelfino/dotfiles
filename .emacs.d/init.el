@@ -654,3 +654,11 @@ called Emacs Anywhere."
 
 ;; Set variable in an automatic manner
 (customize-set-variable 'cider-shadow-cljs-command "shadow-cljs")
+
+;; Define a function to enable markdown-mode after Emacs Anywhere is invoked
+(defun pmd/markdown-mode-emacs-anywhere (app-name window-title x y w h)
+  (markdown-mode))
+
+;; Hook your function
+(add-hook 'ea-popup-hook 'pmd/markdown-mode-emacs-anywhere)
+

@@ -9,8 +9,12 @@
 (save-place-mode 1)
 
 ;; Avoid custom variables from Emacs, since this is a handcrafted file
-;; Move them to a different file
-(setq custom-file (locate-user-emacs-file "/home/pedro/.dotfiles/.emacs.d/custom-vars.el"))
+;; Move them to a different file. There is macOS and a nixOS version
+;; macOS
+(setq custom-file (locate-user-emacs-file "/home/pedro/.emacs.d/custom-vars.el")) 
+;; nixOS config
+;;(setq custom-file (locate-user-emacs-file "/home/pedro/.dotfiles/.emacs.d/custom-vars.el"))
+
 (load custom-file 'noerror 'nomessage)
 
 ;; Prevent UI dialogs for prompts
@@ -662,9 +666,9 @@ called Emacs Anywhere."
 ;; Hook your function
 (add-hook 'ea-popup-hook 'pmd/markdown-mode-emacs-anywhere)
 
-;; Failed install of clj-refactor
-;; (use-package clj-refactor
-;;   :ensure t)
+;;Failed install of clj-refactor
+(use-package clj-refactor
+  :ensure t)
 
 ;; It was necessary to use manual package-install
 ;; (require 'clj-refactor)

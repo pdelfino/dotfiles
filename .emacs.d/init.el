@@ -1,4 +1,4 @@
-(package-refresh-contents)
+;; Attention, remember to execute command `package-refresh-contents` before installing stuff with use-package declaration
 
 ;;;;;;;;;;;;;;;
 ;; The new Emacs from Scratch series
@@ -726,3 +726,7 @@ the right."
           (setq end (point-at-eol)))))
 
     (align-regexp start end complete-regexp group 1 t)))
+
+;;Trying to install yaml-mode
+(use-package yaml-mode
+  :ensure t)

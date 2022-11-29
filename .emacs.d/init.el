@@ -727,6 +727,14 @@ the right."
 
     (align-regexp start end complete-regexp group 1 t)))
 
-;;Trying to install yaml-mode
+;; Install yaml-mode
 (use-package yaml-mode
   :ensure t)
+
+;; Install exec-path
+(use-package exec-path-from-shell
+  :ensure t)
+
+;; Configure exec-path
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))

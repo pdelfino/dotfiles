@@ -738,3 +738,7 @@ the right."
 ;; Configure exec-path
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+
+;; Fix my counsel-rg 
+(setq ivy-re-builders-alist '((counsel-rg . ivy--regex-plus)
+                              (t . ivy-prescient-re-builder)))

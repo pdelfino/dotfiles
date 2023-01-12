@@ -742,3 +742,6 @@ the right."
 ;; Fix my counsel-rg 
 (setq ivy-re-builders-alist '((counsel-rg . ivy--regex-plus)
                               (t . ivy-prescient-re-builder)))
+
+;; It lets you use a new minibuffer when you're in the minibuffer
+(setq enable-recursive-minibuffers t)

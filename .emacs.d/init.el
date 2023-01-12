@@ -400,12 +400,12 @@
 ;; Bring things copied outside of Emacs to the Emacs clipboard ring
 (setq save-interprogram-paste-before-kill t)
 
-;; Inserting wakatime in emacs
-;; (use-package wakatime-mode
-;;   :init
-;;   (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
-;;   :config
-;;   (global-wakatime-mode 1))
+;;Inserting wakatime in emacs
+(use-package wakatime-mode
+  :init
+  (setq wakatime-api-key "37bc2977-bd5e-4794-983d-c88624ec6b32")
+  :config
+  (global-wakatime-mode))
 
 ;; Testing this to see if it helps with my problems when opening slime buffer
 ;; (use-package golden-ratio

@@ -765,3 +765,20 @@ the right."
         '(pdf-tools-handle-upgrades nil)) ; Use brew upgrade pdf-tools instead.
      (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo"))
      (pdf-tools-install)
+
+;; build dependency tree for function
+(use-package lsp-mode
+    :ensure t
+    :hook ((clojure-mode . lsp)
+           (clojurescript-mode . lsp))
+    :commands lsp)
+
+(use-package treemacs
+    :ensure t)
+
+(use-package lsp-treemacs
+  :ensure t)
+
+;; Make kill-line possible in the mini-buffer
+(define-key minibuffer-mode-map (kbd "C-k") #'kill-line)
+

@@ -779,6 +779,16 @@ the right."
 (use-package lsp-treemacs
   :ensure t)
 
-;; Make kill-line possible in the mini-buffer
+;;; Make kill-line possible in the mini-buffer
 (define-key minibuffer-mode-map (kbd "C-k") #'kill-line)
 
+;;; Make chatGPT buffer better to read
+(defun clean-gpt-buffer ()
+  (with-current-buffer "*ChatGPT*"
+    (fill-paragraph)))
+
+;;; Use chatGPT inside Emacs
+(use-package gptel
+ :hook ((gptel-post-response-hook . clean-gpt-buffer)) 
+ :config
+ (setq gptel-api-key "omiitted"))

@@ -789,6 +789,6 @@ the right."
 
 ;;; Use chatGPT inside Emacs
 (use-package gptel
- :hook ((gptel-post-response-hook . clean-gpt-buffer)) 
+ :hook ((gptel-post-response . clean-gpt-buffer)) 
  :config
- (setq gptel-api-key "omiitted"))
+ (setq gptel-api-key "omitted"))

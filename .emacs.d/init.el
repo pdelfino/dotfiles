@@ -293,7 +293,7 @@
 ;; customize *** in org-mode
 (use-package org-bullets
   :after org
-  :hook (org-mode . org-bullets-mode)
+  :hook ((org-mode . org-bullets-mode))
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
@@ -306,7 +306,7 @@
 ;; Package to put text from org-files right in the middle of the
 ;; screen.
 (use-package visual-fill-column
-  :hook (org-mode . pmd/org-mode-visual-fill))
+  :hook ((org-mode . pmd/org-mode-visual-fill)))
 
 ;; improving *terminal* buffer experience
 (use-package term
@@ -340,7 +340,7 @@
 (use-package eshell-git-prompt)
 
 (use-package eshell
-  :hook (eshell-first-time-mode . pmd/configure-eshell)
+  :hook ((eshell-first-time-mode . pmd/configure-eshell))
   :config
 
   (with-eval-after-load 'esh-opt
@@ -779,8 +779,18 @@ the right."
 (use-package lsp-treemacs
   :ensure t)
 
-;;; Make kill-line possible in the mini-buffer
-;; (define-key minibuffer-mode-map (kbd "C-k") #'paredit-kill)
+;; Javascript development more comfortable
+(use-package js2-mode
+  :ensure t
+  :hook ((js2-mode . js2-imenu-extras-mode))
+  :init
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+
+(use-package js2-refactor
+  :ensure t)
+
+(use-package xref-js2
+  :ensure t)
 
 ;;; Make chatGPT buffer better to read
 (defun clean-gpt-buffer ()

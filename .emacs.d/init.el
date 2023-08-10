@@ -131,7 +131,7 @@
          ;("TAB" . ivy-alt-done)
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
+         ("C-k" . kill-line)
          :map ivy-switch-buffer-map
          ("C-k" . ivy-previous-line)
          ("C-l" . ivy-done)
@@ -780,7 +780,7 @@ the right."
   :ensure t)
 
 ;;; Make kill-line possible in the mini-buffer
-(define-key minibuffer-mode-map (kbd "C-k") #'kill-line)
+;; (define-key minibuffer-mode-map (kbd "C-k") #'paredit-kill)
 
 ;;; Make chatGPT buffer better to read
 (defun clean-gpt-buffer ()

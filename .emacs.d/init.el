@@ -630,6 +630,16 @@
   (insert "/"))
 (global-set-key (kbd "C-x C-M-q") 'pmd/insert-slash)
 
+;; Hacky command to type backward backslash "\"
+;; Outside of emacs, just execute Option-shift-Q
+(defun pmd/insert-backslash ()
+  "Hack because of the problem on macOS/Emacs/Portuguese input/American keyboard."
+  (interactive)
+  (insert '\')
+(global-set-key (kbd "C-x C-M-e") 'pmd/insert-backslash)
+
+;; Hacky command to type "?" in Emacs while using macOS
+;; Outside of Emacs just execute Right command and w key
 (defun pmd/insert-question-mark ()
   "Hack because of the problem on macOS/Emacs/Portuguese input/American keyboard."
   (interactive)
@@ -770,14 +780,19 @@ the right."
 (use-package lsp-mode
     :ensure t
     :hook ((clojure-mode . lsp)
-           (clojurescript-mode . lsp))
+           (clojurescript-mode . lsp)
+           ;; (prog-mode . lsp)
+           )
     :commands lsp)
 
-(use-package treemacs
-    :ensure t)
+;; (use-package treemacs
+;;     :ensure t)
 
-(use-package lsp-treemacs
-  :ensure t)
+;; (use-package lsp-treemacs
+;;   :ensure t)
+
+;; sets the indentation level to 2 spaces for JavaScript files 
+(setq js-indent-level 2)
 
 ;; Javascript development more comfortable
 (use-package js2-mode

@@ -502,7 +502,9 @@
 
 ;; Install cider to start a REPL directly in Clojure
 (use-package cider
-  :ensure t)
+  :ensure t
+  :config
+  (setq nrepl-log-messages t))
 
 ;; Normally TAB only indents, but now it will also do completion if
 ;; the code is already properly indented.
@@ -630,13 +632,13 @@
   (insert "/"))
 (global-set-key (kbd "C-x C-M-q") 'pmd/insert-slash)
 
-;; Hacky command to type backward backslash "\"
+;; Hacky command to type backward slashbar "\"
 ;; Outside of emacs, just execute Option-shift-Q
 (defun pmd/insert-backslash ()
   "Hack because of the problem on macOS/Emacs/Portuguese input/American keyboard."
   (interactive)
   (insert '\')
-(global-set-key (kbd "C-x C-M-e") 'pmd/insert-backslash)
+(global-set-key (kbd "C-x C-M-e") 'pmd/insert-backslash))
 
 ;; Hacky command to type "?" in Emacs while using macOS
 ;; Outside of Emacs just execute Right command and w key
@@ -807,6 +809,10 @@ the right."
 (use-package xref-js2
   :ensure t)
 
+;;; Learn touch typing inside Emacs
+(use-package speed-type
+  :ensure t)
+
 ;;; Make chatGPT buffer better to read
 (defun clean-gpt-buffer ()
   (with-current-buffer "*ChatGPT*"
@@ -814,6 +820,7 @@ the right."
 
 ;;; Use chatGPT inside Emacs
 (use-package gptel
- :hook ((gptel-post-response . clean-gpt-buffer)) 
+ :hook ((gptel-post-response . clean-gpt-buffer)
+        (emacs-startup-hook  . gptel)) 
  :config
  (setq gptel-api-key "omitted"))

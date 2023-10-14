@@ -776,10 +776,15 @@ the right."
   :config
   (custom-set-variables
    '(pdf-tools-handle-upgrades nil)) ; Use brew upgrade pdf-tools instead.
-  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
   
   ;; Add the pdf-view-mode hook to disable display-line-numbers-mode
-  (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1))))
+  (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
+  
+  (setq pdf-view-continuous t)   ;; Enable continuous scrolling mode
+
+  ;; "Set the path to the 'epdfinfo' program for PDF Tools."
+  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo"))
+
 
 (pdf-tools-install)
 

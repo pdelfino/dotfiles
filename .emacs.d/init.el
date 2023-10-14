@@ -596,7 +596,8 @@
 ;; Mouse hacking -> enforce a keyboard driven experience Try to avoid
 ;; using mouse, mouse pad, and arrow keys (up, down, etc)
 ;; (require 'disable-mouse) (global-disable-mouse-mode)
-(mouse-wheel-mode 0)
+;; (mouse-wheel-mode 0)
+
 ;; Disable arrow keys to enforce C-n, C-p, C-f and C-b use
 (global-unset-key (kbd "<left>") )
 (global-unset-key (kbd "<right>") )
@@ -771,12 +772,16 @@ the right."
 ;;; up, just do 'brew uninstall pdf-tools', wipe out the elpa
 ;;; pdf-tools package and reinstall both as at the start.
 (use-package pdf-tools
-      :ensure t
-      :config
-      (custom-set-variables
-        '(pdf-tools-handle-upgrades nil)) ; Use brew upgrade pdf-tools instead.
-     (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo"))
-     (pdf-tools-install)
+  :ensure t
+  :config
+  (custom-set-variables
+   '(pdf-tools-handle-upgrades nil)) ; Use brew upgrade pdf-tools instead.
+  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
+  
+  ;; Add the pdf-view-mode hook to disable display-line-numbers-mode
+  (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1))))
+
+(pdf-tools-install)
 
 ;; build dependency tree for function
 (use-package lsp-mode
@@ -811,6 +816,10 @@ the right."
 
 ;;; Learn touch typing inside Emacs
 (use-package speed-type
+  :ensure t)
+
+;;; Helps to develop the org-mode blog
+(use-package simple-httpd
   :ensure t)
 
 ;;; Make chatGPT buffer better to read

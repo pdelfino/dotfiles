@@ -779,12 +779,17 @@ the right."
   
   ;; Add the pdf-view-mode hook to disable display-line-numbers-mode
   (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
-  
-  (setq pdf-view-continuous t)   ;; Enable continuous scrolling mode
 
   ;; "Set the path to the 'epdfinfo' program for PDF Tools."
-  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo"))
+  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
+  
+  ;; Enable continuous scrolling mode
+  (setq pdf-view-continuous t)
 
+  ;; Add a hook to execute pdf-view-shrink twice when a PDF is opened
+  (add-hook 'pdf-view-mode-hook (lambda ()
+                                  (pdf-view-shrink)
+                                  (pdf-view-shrink))))
 
 (pdf-tools-install)
 

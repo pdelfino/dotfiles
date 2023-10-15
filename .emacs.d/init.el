@@ -1,5 +1,8 @@
 ;; Attention, remember to execute command `package-refresh-contents` before installing stuff with use-package declaration
 
+;;; Enable truncation of long lines across all buffers by default
+(setq-default truncate-lines t)
+
 ;;;;;;;;;;;;;;;
 ;; The new Emacs from Scratch series
 ;; Remember recently edited file
@@ -104,14 +107,15 @@
 
 ;; Guarantees the download of packages before they are run. Useful
 ;; when running config file from the very first time.
-(setq use-package-always-ensure t)
+;; (setq use-package-always-ensure t)
 
 ;; Display column numbers.
 (column-number-mode)
 
 ;; Display line numbers.
 ;; This is better than old `linum-mode'.
-(global-display-line-numbers-mode t) ;;Mode line gives a lot of info, no need for this anymore.
+(global-display-line-numbers-mode t)
+;;Mode line gives a lot of info, no need for this anymore.
 
 ;; Disable line numbers for some modes.
 ;; A hook is a variable that holds a list of functions. This
@@ -119,6 +123,26 @@
                 term-mode-hook
 		shell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;;; Bring straight.el package manager
+(defvar bootstrap-version)
+(let ((bootstrap-file
+      (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+        "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+        'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; Use straight.el for use-package expressions
+(straight-use-package 'use-package)
+
+;;; This is equivalent to setting use-package-always-ensure to t.
+(setq straight-use-package-by-default t)
 
 ;; Package to show keybindings being used.
 (use-package command-log-mode)
@@ -354,7 +378,7 @@
 
 ;; The package adds an automatic Table of Content (TOC) on org files
 (use-package org-make-toc
-  :ensure t)
+  :straight t)
 
 ;; Update my Emacs' packages every week This things screw me up once.
 ;; But after re-compiling all packages with (byte-recompile-directory
@@ -429,17 +453,6 @@
       (org-clock-sum)
       (message (format "%d" org-clock-file-total-minutes)))))
 
-;; Function to create an org-clock command to sum an especific region
-(defun pmd/org-clock-sum-current-region (beg end)
-  "Sum the total amount of time in the marked region."
-  (interactive "r")
-  (let ((s (buffer-substring-no-properties beg end)))
-    (with-temp-buffer
-      (insert "* foo\n")
-      (insert s)
-      (org-clock-sum)
-      (message (format "%d" org-clock-file-total-minutes)))))
-
 ;; Snippet of text before starting Nyxt
 (defun pmd/nyxt-quickload-gi-gtk ()
   "Insert snippet to load Nyxt."
@@ -489,20 +502,20 @@
 
 ;; Rest-client using a grammar and plain text for requests
 (use-package restclient
-  :ensure t
+  :straight t
   :mode (("\\.http\\'" . restclient-mode)))
 
 ;; Org-drill like anki cards inside emacs
 (use-package org-drill
-  :ensure t)
+  :straight t)
 
 ;; Clojure-mode to program in Clojure
 (use-package clojure-mode
-  :ensure t)
+  :straight t)
 
 ;; Install cider to start a REPL directly in Clojure
 (use-package cider
-  :ensure t
+  :straight t
   :config
   (setq nrepl-log-messages t))
 
@@ -512,14 +525,14 @@
 
 ;; Package to export org-mode to markdown
 (use-package ox-gfm
-  :ensure t)
+  :straight t)
 
 ;; =counsel-yank-pop= enhances built-in =yank-pop=.
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
 
 ;; Paredit
 (use-package paredit
-  :ensure t
+  :straight t
   :hook ((emacs-lisp-mode . enable-paredit-mode)
          (eval-expression-minibuffer-setup . enable-paredit-mode)
          (ielm-mode . enable-paredit-mode)
@@ -578,7 +591,7 @@
 
 ;; Emacs minor mode to wrap region with tag or punctuations
 (use-package wrap-region
-  :ensure t
+  :straight t
   :config
     (wrap-region-global-mode 1)
     (wrap-region-add-wrapper "*" "*")
@@ -605,7 +618,7 @@
 (global-unset-key (kbd "<down>"))
 
 (use-package slime
-  :ensure t
+  :straight t
   :config
     (setq slime-lisp-implementations
           '((sbcl ("/home/pedro/projects/nyxt.sh" ""))))
@@ -652,7 +665,7 @@
 ;; This package brings keybindings similar to org-mode, but to
 ;; markdown format!
 (use-package markdown-mode
-  :ensure t
+  :straight t
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown"))
 
@@ -666,7 +679,7 @@ called Emacs Anywhere."
 
 ;; Package to make introduce to Emacs everything on the system clipboard!
 (use-package clipmon
-  :ensure t)
+  :straight t)
 
 ;; Start server so that I can easily launch succesfully the
 ;; application called Emacs Anywhere
@@ -684,7 +697,7 @@ called Emacs Anywhere."
 
 ;; Install of clj-refactor
 (use-package clj-refactor
-  :ensure t
+  :straight t
   :config (clj-refactor-mode 1)
   :bind ("C-c C-m" . cljr-add-keybindings-with-prefix))
 
@@ -698,16 +711,16 @@ called Emacs Anywhere."
 
 ;; install flycheck package
 (use-package flycheck
-  :ensure t
+  :straight t
   :init (global-flycheck-mode))
 
 ;; Install extension of kondo on top of flycheck
 (use-package flycheck-clj-kondo
-  :ensure t)
+  :straight t)
 
 ;; then install the checker as soon as `clojure-mode' is loaded
 (use-package clojure-mode
-  :ensure t
+  :straight t
   :config
   (require 'flycheck-clj-kondo))
 
@@ -742,11 +755,11 @@ the right."
 
 ;; Install yaml-mode
 (use-package yaml-mode
-  :ensure t)
+  :straight t)
 
 ;; Install exec-path
 (use-package exec-path-from-shell
-  :ensure t)
+  :straight t)
 
 ;; Configure exec-path
 (when (memq window-system '(mac ns x))
@@ -761,7 +774,7 @@ the right."
 
 ;; Install transpose-frame
 (use-package transpose-frame
-  :ensure t)
+  :straight t)
 
 ;; Use Emacs as pdf viewer. Source:
 ;; https://emacs.stackexchange.com/questions/13314/install-pdf-tools-on-emacs-macosx/22591#22591
@@ -772,13 +785,13 @@ the right."
 ;;; up, just do 'brew uninstall pdf-tools', wipe out the elpa
 ;;; pdf-tools package and reinstall both as at the start.
 (use-package pdf-tools
-  :ensure t
+  :straight t
   :config
   (custom-set-variables
    '(pdf-tools-handle-upgrades nil)) ; Use brew upgrade pdf-tools instead.
   
   ;; Add the pdf-view-mode hook to disable display-line-numbers-mode
-  (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
+  ;; (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
 
   ;; "Set the path to the 'epdfinfo' program for PDF Tools."
   (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
@@ -787,15 +800,13 @@ the right."
   (setq pdf-view-continuous t)
 
   ;; Add a hook to execute pdf-view-shrink twice when a PDF is opened
-  (add-hook 'pdf-view-mode-hook (lambda ()
-                                  (pdf-view-shrink)
-                                  (pdf-view-shrink))))
+  :hook ((pdf-view-mode . pdf-view-shrink )))
 
 (pdf-tools-install)
 
 ;; build dependency tree for function
 (use-package lsp-mode
-    :ensure t
+    :straight t
     :hook ((clojure-mode . lsp)
            (clojurescript-mode . lsp)
            ;; (prog-mode . lsp)
@@ -803,34 +814,40 @@ the right."
     :commands lsp)
 
 ;; (use-package treemacs
-;;     :ensure t)
+;;     :straight t)
 
 ;; (use-package lsp-treemacs
-;;   :ensure t)
+;;   :straight t)
 
 ;; sets the indentation level to 2 spaces for JavaScript files 
 (setq js-indent-level 2)
 
 ;; Javascript development more comfortable
 (use-package js2-mode
-  :ensure t
+  :straight t
   :hook ((js2-mode . js2-imenu-extras-mode))
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 
 (use-package js2-refactor
-  :ensure t)
+  :straight t)
 
 (use-package xref-js2
-  :ensure t)
+  :straight t)
 
 ;;; Learn touch typing inside Emacs
 (use-package speed-type
-  :ensure t)
+  :straight t)
 
 ;;; Helps to develop the org-mode blog
 (use-package simple-httpd
-  :ensure t)
+  :straight t)
+
+;;; Important to have GitHub co-pilot in Emacs
+;; (use-package editorconfig
+;;   :straight t
+;;   :config
+;;   (editorconfig-mode 1))
 
 ;;; Make chatGPT buffer better to read
 (defun clean-gpt-buffer ()
@@ -838,8 +855,16 @@ the right."
     (fill-paragraph)))
 
 ;;; Use chatGPT inside Emacs
+(defun pmd/read-openai-key ()
+  (with-temp-buffer
+    (insert-file-contents "~/key.txt")
+    (string-trim (buffer-string))))
+
 (use-package gptel
- :hook ((gptel-post-response . clean-gpt-buffer)
-        (emacs-startup-hook  . gptel)) 
- :config
- (setq gptel-api-key "omitted"))
+  :straight t
+  :init
+  (setq-default gptel-model "gpt-4"
+                gptel-playback t
+                gptel-default-mode 'org-mode
+                gptel-api-key #'pmd/read-openai-key))
+

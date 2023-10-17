@@ -829,9 +829,11 @@ the right."
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 
+;; Javascript development more comfortable
 (use-package js2-refactor
   :straight t)
 
+;; Javascript development more comfortable
 (use-package xref-js2
   :straight t)
 
@@ -842,6 +844,13 @@ the right."
 ;;; Helps to develop the org-mode blog
 (use-package simple-httpd
   :straight t)
+
+(defun pmd/markdown-convert-buffer-to-org ()
+  "Convert the current buffer's content from markdown to orgmode format and save it with the current buffer's file name but with .org extension."
+  (interactive)
+  (shell-command-on-region (point-min) (point-max)
+                           (format "pandoc -f markdown -t org -o %s"
+                                   (concat (file-name-sans-extension (buffer-file-name)) ".org"))))
 
 ;;; Important to have GitHub co-pilot in Emacs
 ;; (use-package editorconfig
@@ -854,12 +863,13 @@ the right."
   (with-current-buffer "*ChatGPT*"
     (fill-paragraph)))
 
-;;; Use chatGPT inside Emacs
+;;; Configure API Key to use chatGPT inside Emacs
 (defun pmd/read-openai-key ()
   (with-temp-buffer
     (insert-file-contents "~/key.txt")
     (string-trim (buffer-string))))
 
+;;; Use chatGPT inside Emacs
 (use-package gptel
   :straight t
   :init
@@ -867,4 +877,19 @@ the right."
                 gptel-playback t
                 gptel-default-mode 'org-mode
                 gptel-api-key #'pmd/read-openai-key))
+
+;;; Trying to bring GitHub co-pilot to Emacs
+;; (defun my/copilot-tab ()
+;;   (interactive)
+;;   (or (copilot-accept-completion)
+;;       (indent-for-tab-command)))
+
+;; You either have to use straight.el, Quelpa, or clone the repo directly for now
+;; (straight-use-package '(copilot :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el")))
+;; (require 'copilot)
+
+;; (with-eval-after-load 'copilot
+;;   (define-key copilot-mode-map (kbd "<tab>") #'my/copilot-tab))
+
+;; (add-hook 'prog-mode-hook 'copilot-mode)
 

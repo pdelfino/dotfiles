@@ -186,7 +186,7 @@
 ;; Use the same theme as System Crafters. This package brings themes
 ;; available in Doom Emacs.
 (use-package doom-themes
-  :init (load-theme 'doom-palenight t))
+  :init (load-theme 'doom-city-lights t))
 
 ;; Highlights parens, brackets, and braces according to their depth.
 ;; Hook keyword is being used with `:hook'.
@@ -578,8 +578,13 @@
 ;; Show parens immediatly
 (setq show-paren-delay 0)
 
+;; Control mark locations to have at most 100 places stored
+;; Hint: Use `C-x C-SPC' to navigate on global mark ring
+;; Hint: Use `C-u C-SPC' to navigate on local file mark ring
+(setq mark-ring-max 100)
+
 ;; Show whole parens expression as highlighted
-(setq show-paren-style 'expression) ;; highlight whole expression
+;; (setq show-paren-style 'expression)
 
 ;; Launch emacs as full screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -607,9 +612,9 @@
 ;; (mouse-wheel-mode 0)
 
 ;; Disable arrow keys to enforce C-n, C-p, C-f and C-b use
-(global-unset-key (kbd "<left>") )
-(global-unset-key (kbd "<right>") )
-(global-unset-key (kbd "<up>") )
+(global-unset-key (kbd "<left>"))
+(global-unset-key (kbd "<right>"))
+(global-unset-key (kbd "<up>"))
 (global-unset-key (kbd "<down>"))
 
 (use-package slime
@@ -887,4 +892,3 @@ the right."
 ;;   (define-key copilot-mode-map (kbd "<tab>") #'my/copilot-tab))
 
 ;; (add-hook 'prog-mode-hook 'copilot-mode)
-

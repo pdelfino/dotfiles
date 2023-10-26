@@ -547,7 +547,6 @@
          (clojure-mode . enable-paredit-mode))
   :config
   (show-paren-mode t)
-  (define-key paredit-mode-map (kbd "C-M-q") nil)  ;; Unbinding paredit-reindent-defun
   :bind (("C->" . paredit-forward-slurp-sexp)
          ("C-<" . paredit-forward-barf-sexp)
          ("C-M-<" . paredit-backward-slurp-sexp)

@@ -547,7 +547,7 @@
          (clojure-mode . enable-paredit-mode))
   :config
   (show-paren-mode t)
-    
+  (define-key paredit-mode-map (kbd "C-M-q") nil)  ;; Unbinding paredit-reindent-defun
   :bind (("C->" . paredit-forward-slurp-sexp)
          ("C-<" . paredit-forward-barf-sexp)
          ("C-M-<" . paredit-backward-slurp-sexp)
@@ -555,11 +555,7 @@
          ("<C-right>" .  nil)
          ("<C-left>" .  nil)
          ("M-[" . paredit-wrap-square)
-         ("M-{" . paredit-wrap-curly))
-    
-  ;; :after (autoload 'enable-paredit-mode "paredit" "Turn on
-  ;; pseudo-structural editing of Lisp code." t)
-  )
+         ("M-{" . paredit-wrap-curly)))
 
 ;; Keybindings
 ;;;; Jump to bookmarks

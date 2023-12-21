@@ -114,6 +114,8 @@
 
 ;; Display line numbers.
 ;; This is better than old `linum-mode'.
+;; Hint: M-g M-g to jump to line
+;; Hint: M-g TAB to jump to column
 (global-display-line-numbers-mode t)
 ;;Mode line gives a lot of info, no need for this anymore.
 
@@ -892,3 +894,8 @@ the right."
 ;;   (define-key copilot-mode-map (kbd "<tab>") #'my/copilot-tab))
 
 ;; (add-hook 'prog-mode-hook 'copilot-mode)
+
+;;; Improve window navigation in Emacs
+;;; Remember: window != buffer
+(use-package ace-window
+  :straight t)

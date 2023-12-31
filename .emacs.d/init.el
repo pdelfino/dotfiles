@@ -654,15 +654,18 @@
   "Hack because of the problem on macOS/Emacs/Portuguese input/American keyboard."
   (interactive)
   (insert '\')
-(global-set-key (kbd "C-x C-M-e") 'pmd/insert-backslash))
+;; (global-set-key (kbd "C-x C-M-e") 'pmd/insert-backslash)
+)
 
 ;; Hacky command to type "?" in Emacs while using macOS
 ;; Outside of Emacs just execute Right command and w key
 (defun pmd/insert-question-mark ()
   "Hack because of the problem on macOS/Emacs/Portuguese input/American keyboard."
   (interactive)
-  (insert "?"))
-(global-set-key (kbd "C-x C-M-w") 'pmd/insert-question-mark)
+  (insert "?")
+;; (global-set-key (kbd "C-x C-M-w") 'pmd/insert-question-mark)
+)
+
 
 ;; This package brings keybindings similar to org-mode, but to
 ;; markdown format!

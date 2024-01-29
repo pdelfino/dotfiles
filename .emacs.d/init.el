@@ -810,13 +810,14 @@ the right."
 (pdf-tools-install)
 
 ;; build dependency tree for function
+;; lsp-find-references is a neat command!
 (use-package lsp-mode
-    :straight t
-    :hook ((clojure-mode . lsp)
-           (clojurescript-mode . lsp)
-           ;; (prog-mode . lsp)
-           )
-    :commands lsp)
+  :straight t
+  :hook ((clojure-mode . lsp)
+         (clojurescript-mode . lsp)
+         ;; (prog-mode . lsp)
+         )
+  :commands lsp)
 
 ;; (use-package treemacs
 ;;     :straight t)

@@ -916,3 +916,14 @@ the right."
     (when filename
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
+
+
+;; ansi-term life saving commands:
+;;   To switch to line mode, use C-c C-j.
+;;   To return to char mode, use C-c C-k.
+(defun my-ansi-term ()
+  "Start `ansi-term` in line mode."
+  (interactive)
+  (ansi-term (getenv "SHELL"))
+  (term-line-mode)) ; Switch to line mode immediately after launching
+(add-hook 'emacs-startup-hook 'my-ansi-term)

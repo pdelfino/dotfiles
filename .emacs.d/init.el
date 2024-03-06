@@ -187,8 +187,10 @@
 
 ;; Use the same theme as System Crafters. This package brings themes
 ;; available in Doom Emacs.
-(use-package doom-themes
-  :init (load-theme 'doom-city-lights t))
+;; (use-package doom-themes
+;;   :init (load-theme 'doom-city-lights t))
+(use-package spacemacs-theme
+  :init (load-theme 'spacemacs-light t))
 
 ;; Highlights parens, brackets, and braces according to their depth.
 ;; Hook keyword is being used with `:hook'.
@@ -927,3 +929,22 @@ the right."
   (ansi-term (getenv "SHELL"))
   (term-line-mode)) ; Switch to line mode immediately after launching
 (add-hook 'emacs-startup-hook 'my-ansi-term)
+
+(defun term-send-tab ()
+  "Send tab in term line mode for auto-completion."
+  (interactive)
+  (let ((term-state (term-in-line-mode)))
+    (when term-state (term-char-mode))
+    (term-send-raw-string "\t")
+    (when term-state (term-line-mode))))
+
+(defun my-term-mode-hook ()
+  (define-key term-mode-map (kbd "TAB") #'term-send-tab))
+(add-hook 'term-mode-hook 'my-term-mode-hook)
+
+(defun pmd/my-org-table-current-cell-location ()
+  "Display the current Org table cell location as @row$column."
+  (interactive)
+  (let* ((pos (org-table-current-dline))
+         (col (org-table-current-column)))
+    (message "@%d$%d" pos col)))

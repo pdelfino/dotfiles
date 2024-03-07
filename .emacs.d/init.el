@@ -908,17 +908,25 @@ the right."
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 
-;; Copy the file name to my clipboard ring
-(defun pmd/copy-file-name-to-clipboard ()
-  "Copy the current buffer file name to the clipboard."
+(defun pmd/copy-complete-file-path-and-name-to-clipboard ()
+  "Copy the full path of the current buffer's file or directory to the clipboard."
   (interactive)
   (let ((filename (if (equal major-mode 'dired-mode)
                       default-directory
                     (buffer-file-name))))
     (when filename
       (kill-new filename)
-      (message "Copied buffer file name '%s' to the clipboard." filename))))
+      (message "Copied full path '%s' to the clipboard." filename))))
 
+(defun pmd/copy-file-name-to-clipboard ()
+  "Copy the name of the current buffer's file or directory (without path) to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      (file-name-nondirectory (directory-file-name default-directory))
+                    (file-name-nondirectory (buffer-file-name)))))
+    (when filename
+      (kill-new filename)
+      (message "Copied file name '%s' to the clipboard." filename))))
 
 ;; ansi-term life saving commands:
 ;;   To switch to line mode, use C-c C-j.

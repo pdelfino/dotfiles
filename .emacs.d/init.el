@@ -908,7 +908,7 @@ the right."
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 
-(defun pmd/copy-complete-file-path-and-name-to-clipboard ()
+(defun pmd/clipboard-copy-full-path ()
   "Copy the full path of the current buffer's file or directory to the clipboard."
   (interactive)
   (let ((filename (if (equal major-mode 'dired-mode)
@@ -918,7 +918,7 @@ the right."
       (kill-new filename)
       (message "Copied full path '%s' to the clipboard." filename))))
 
-(defun pmd/copy-file-name-to-clipboard ()
+(defun pmd/clipboard-copy-file-name ()
   "Copy the name of the current buffer's file or directory (without path) to the clipboard."
   (interactive)
   (let ((filename (if (equal major-mode 'dired-mode)

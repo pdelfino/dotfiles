@@ -521,7 +521,21 @@
 (use-package cider
   :straight t
   :config
-  (setq nrepl-log-messages t))
+  (setq nrepl-log-messages t)
+  (setq cider-repl-use-pretty-printing t))
+
+(setq cider-repl-history-file "~/.emacs.d/cider-repl-history")
+
+(add-hook 'cider-repl-mode-hook
+          (lambda ()
+            (let ((filename "~/.emacs.d/cider-repl-history"))
+              (when (file-exists-p filename)
+                (cider-repl-history-load filename)
+                (setq-local savehist-autosave-interval 60)
+                (add-hook 'kill-emacs-hook #'cider-repl-history-just-save t t)))))
+
+;; Set variable in an automatic manner
+(customize-set-variable 'cider-shadow-cljs-command "shadow-cljs")
 
 ;; Normally TAB only indents, but now it will also do completion if
 ;; the code is already properly indented.
@@ -691,9 +705,6 @@ called Emacs Anywhere."
 ;; Start server so that I can easily launch succesfully the
 ;; application called Emacs Anywhere
 (add-hook 'after-init-hook #'server-start)
-
-;; Set variable in an automatic manner
-(customize-set-variable 'cider-shadow-cljs-command "shadow-cljs")
 
 ;; Define a function to enable markdown-mode after Emacs Anywhere is invoked
 (defun pmd/markdown-mode-emacs-anywhere (app-name window-title x y w h)

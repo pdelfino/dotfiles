@@ -521,21 +521,7 @@
 (use-package cider
   :straight t
   :config
-  (setq nrepl-log-messages t)
-  (setq cider-repl-use-pretty-printing t))
-
-(setq cider-repl-history-file "~/.emacs.d/cider-repl-history")
-
-(add-hook 'cider-repl-mode-hook
-          (lambda ()
-            (let ((filename "~/.emacs.d/cider-repl-history"))
-              (when (file-exists-p filename)
-                (cider-repl-history-load filename)
-                (setq-local savehist-autosave-interval 60)
-                (add-hook 'kill-emacs-hook #'cider-repl-history-just-save t t)))))
-
-;; Set variable in an automatic manner
-(customize-set-variable 'cider-shadow-cljs-command "shadow-cljs")
+  (setq nrepl-log-messages t))
 
 ;; Normally TAB only indents, but now it will also do completion if
 ;; the code is already properly indented.
@@ -705,6 +691,9 @@ called Emacs Anywhere."
 ;; Start server so that I can easily launch succesfully the
 ;; application called Emacs Anywhere
 (add-hook 'after-init-hook #'server-start)
+
+;; Set variable in an automatic manner
+(customize-set-variable 'cider-shadow-cljs-command "shadow-cljs")
 
 ;; Define a function to enable markdown-mode after Emacs Anywhere is invoked
 (defun pmd/markdown-mode-emacs-anywhere (app-name window-title x y w h)
@@ -961,9 +950,18 @@ the right."
   (define-key term-mode-map (kbd "TAB") #'term-send-tab))
 (add-hook 'term-mode-hook 'my-term-mode-hook)
 
-(defun pmd/my-org-table-current-cell-location ()
+(defun pmd/org-table-current-cell-location ()
   "Display the current Org table cell location as @row$column."
   (interactive)
   (let* ((pos (org-table-current-dline))
          (col (org-table-current-column)))
     (message "@%d$%d" pos col)))
+
+(defun pmd/org-repeat-next-line-and-execute ()
+  "Repeats 'next-line' followed by 'org-ctrl-c-ctrl-c' a total of 52 times."
+  (interactive)
+  (dotimes (_ 52)  ; Repeats the command block 52 times.
+    (next-line)    ; Moves to the next line.
+    (org-ctrl-c-ctrl-c)  ; Executes the org-ctrl-c-ctrl-c command.
+    (sit-for 0.1)))  ; Optional: short pause between repetitions for visibility.
+  

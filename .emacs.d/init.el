@@ -149,12 +149,17 @@
 ;; Package to show keybindings being used.
 (use-package command-log-mode)
 
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper)))
+
 ;; Using Ivy from System Crafters.
 (use-package ivy
   :diminish ;; keeps ivy out of the mode line.
-  :bind (("C-s" . swiper) ;; this is a cool way to do key binding.
+  :bind (("C-s" . swiper)
+         ;; this is a cool way to do key binding.
          :map ivy-minibuffer-map
-         ;("TAB" . ivy-alt-done)
+                                        ;("TAB" . ivy-alt-done)
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . kill-line)
@@ -625,7 +630,7 @@
 (use-package wrap-region
   :straight t
   :config
-    (wrap-region-global-mode 1)
+    ;; (wrap-region-global-imode 1)
     (wrap-region-add-wrapper "*" "*")
     (wrap-region-add-wrapper "/" "/")
     (wrap-region-add-wrapper "=" "="))

@@ -303,8 +303,20 @@
 ;; `use-package', then it is going to be the last version.  Use
 ;; `describe-variable'to check `org-version'.
 (use-package org
+  :ensure t
   :config
-  (setq org-ellipsis " ▾"));; instead of having `...' there is `▾'.
+  (setq org-latex-pdf-process
+        '("pdflatex -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  (setq org-ellipsis " ▾")) ;; instead of having `...' there is `▾'.
+
+;; (use-package ox-latex
+;;   :ensure t
+;;   :after org)
+
+(use-package auctex
+  :ensure t)
 
 ;; change the size of font size
 ;; Set faces for heading levels
@@ -518,10 +530,26 @@
   :straight t)
 
 ;; Install cider to start a REPL directly in Clojure
+;; (use-package cider
+;;   :straight t
+;;   :config
+;;   (setq nrepl-log-messages t)
+;;   ;; Disable result overlays to print results in the REPL instead
+;;   (setq cider-use-overlays nil)
+;;   ;; Enable pretty-printing for results in the REPL
+;;   (setq cider-repl-use-pretty-printing t)
+;;   ;; Use the Clojure 'pprint' function for printing
+;;   (setq cider-print-fn 'pprint))
+
 (use-package cider
   :straight t
   :config
-  (setq nrepl-log-messages t))
+  (setq cider-use-overlays nil)
+  (setq cider-repl-use-pretty-printing t)
+  (setq cider-print-fn 'pprint))
+
+;; (use-package cider
+;;   :straight t)
 
 ;; Normally TAB only indents, but now it will also do completion if
 ;; the code is already properly indented.
@@ -964,4 +992,7 @@ the right."
     (next-line)    ; Moves to the next line.
     (org-ctrl-c-ctrl-c)  ; Executes the org-ctrl-c-ctrl-c command.
     (sit-for 0.1)))  ; Optional: short pause between repetitions for visibility.
-  
+
+;; Improve navigation on re-frame
+;; (use-package re-jump
+;;   :straight t)

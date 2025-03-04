@@ -320,8 +320,8 @@
 ;;   :ensure t
 ;;   :after org)
 
-(use-package auctex
-  :ensure t)
+;; (use-package auctex
+;;   :ensure t)
 
 ;; change the size of font size
 ;; Set faces for heading levels
@@ -649,10 +649,10 @@
 ;; (mouse-wheel-mode 0)
 
 ;; Disable arrow keys to enforce C-n, C-p, C-f and C-b use
-(global-unset-key (kbd "<left>"))
-(global-unset-key (kbd "<right>"))
-(global-unset-key (kbd "<up>"))
-(global-unset-key (kbd "<down>"))
+;;(global-unset-key (kbd "<left>"))
+;;(global-unset-key (kbd "<right>"))
+;;(global-unset-key (kbd "<up>"))
+;;(global-unset-key (kbd "<down>"))
 
 (use-package slime
   :straight t
@@ -824,25 +824,25 @@ the right."
 ;;; pdf-tools package using Emacs package system. If things get messed
 ;;; up, just do 'brew uninstall pdf-tools', wipe out the elpa
 ;;; pdf-tools package and reinstall both as at the start.
-(use-package pdf-tools
-  :straight t
-  :config
-  (custom-set-variables
-   '(pdf-tools-handle-upgrades nil)) ; Use brew upgrade pdf-tools instead.
+;; (use-package pdf-tools
+;;   :straight t
+;;   :config
+;;   (custom-set-variables
+;;    '(pdf-tools-handle-upgrades nil)) ; Use brew upgrade pdf-tools instead.
   
-  ;; Add the pdf-view-mode hook to disable display-line-numbers-mode
-  ;; (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
+;;   ;; Add the pdf-view-mode hook to disable display-line-numbers-mode
+;;   ;; (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
 
-  ;; "Set the path to the 'epdfinfo' program for PDF Tools."
-  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
+;;   ;; "Set the path to the 'epdfinfo' program for PDF Tools."
+;;   ;; (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
   
-  ;; Enable continuous scrolling mode
-  (setq pdf-view-continuous t)
+;;   ;; Enable continuous scrolling mode
+;;   (setq pdf-view-continuous t)
 
-  ;; Add a hook to execute pdf-view-shrink twice when a PDF is opened
-  :hook ((pdf-view-mode . pdf-view-shrink )))
+;;   ;; Add a hook to execute pdf-view-shrink twice when a PDF is opened
+;;   :hook ((pdf-view-mode . pdf-view-shrink )))
 
-(pdf-tools-install)
+;; (pdf-tools-install)
 
 ;; build dependency tree for function
 ;; lsp-find-references is a neat command!
@@ -899,10 +899,10 @@ the right."
 ;;   :config
 ;;   (editorconfig-mode 1))
 
-;;; Make chatGPT buffer better to read
-(defun clean-gpt-buffer ()
-  (with-current-buffer "*ChatGPT*"
-    (fill-paragraph)))
+;; ;;; Make chatGPT buffer better to read
+;; (defun clean-gpt-buffer ()
+;;   (with-current-buffer "*ChatGPT*"
+;;     (fill-paragraph)))
 
 ;;; Configure API Key to use chatGPT inside Emacs
 (defun pmd/read-openai-key ()
@@ -917,7 +917,11 @@ the right."
   (setq-default gptel-model "gpt-4"
                 gptel-playback t
                 gptel-default-mode 'org-mode
-                gptel-api-key #'pmd/read-openai-key))
+                gptel-api-key #'pmd/read-openai-key)
+  (add-hook 'gptel-output-hook
+          (lambda ()
+            (when (string= (buffer-name) "*chatGPT*")
+              (visual-line-mode 1)))))
 
 ;;; Trying to bring GitHub co-pilot to Emacs
 ;; (defun my/copilot-tab ()
@@ -964,12 +968,13 @@ the right."
 ;; ansi-term life saving commands:
 ;;   To switch to line mode, use C-c C-j.
 ;;   To return to char mode, use C-c C-k.
-(defun my-ansi-term ()
-  "Start `ansi-term` in line mode."
-  (interactive)
-  (ansi-term (getenv "SHELL"))
-  (term-line-mode)) ; Switch to line mode immediately after launching
-(add-hook 'emacs-startup-hook 'my-ansi-term)
+;; (defun my-ansi-term ()
+;;   "Start `ansi-term` in line mode."
+;;   (interactive)
+;;   (ansi-term (getenv "SHELL"))
+;;   (term-line-mode))
+                                        ; Switch to line mode immediately after launching
+;; (add-hook 'emacs-startup-hook 'my-ansi-term)
 
 (defun term-send-tab ()
   "Send tab in term line mode for auto-completion."
@@ -1001,3 +1006,42 @@ the right."
 ;; Improve navigation on re-frame
 ;; (use-package re-jump
 ;;   :straight t)
+(put 'downcase-region 'disabled nil)
+
+(defun pmd/remove-dos-eol ()
+  "Replace DOS eolns CRLF with Unix eolns CR."
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t)
+    (replace-match "")))
+
+;; Maybe try some garbage collection hack
+(setq gc-cons-threshold (* 50 1000 1000)) ; Increase threshold
+
+(flycheck-define-checker clojure-edn
+  "A syntax checker for EDN files using Clojure CLI."
+  :command ("clojure" "-e"
+            "(try (clojure.edn/read-string (slurp \"" source "\"))
+                   (println \"EDN is valid.\")
+                   (catch Exception e
+                     (println \"Invalid EDN:\" (.getMessage e))
+                     (System/exit 1)))")
+  :error-patterns
+  ((warning line-start (message "Invalid EDN:") (id (one-or-more not-newline)) line-end))
+  :modes edn-mode)
+
+(add-to-list 'flycheck-checkers 'clojure-edn)
+
+
+(use-package auctex
+  :ensure t
+  :defer t
+  :mode ("\\.tex\\'" . LaTeX-mode)
+  :config
+  ;; Enable automatic saving and parsing of TeX files for better syntax highlighting and refactoring.
+  (setq TeX-auto-save t
+        TeX-parse-self t
+        TeX-master nil)
+  ;; Enable RefTeX for easy citation and cross-reference management.
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (setq reftex-plug-into-AUCTeX t))
